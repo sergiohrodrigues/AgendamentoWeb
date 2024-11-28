@@ -1,0 +1,184 @@
+[
+  {
+    "ContainingType": "WebApi8_Scheduling.Controllers.ClientController",
+    "Method": "CreateClient",
+    "RelativePath": "api/Client/CreateClient",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "clientCreateDto",
+        "Type": "WebApi8_Scheduling.Dto.Client.ClientCreateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "WebApi8_Scheduling.Models.ResponseModel\u00601[[WebApi8_Scheduling.Models.ClientModel, WebApi8-Scheduling, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "WebApi8_Scheduling.Controllers.ClientController",
+    "Method": "DeleteClient",
+    "RelativePath": "api/Client/DeleteClient",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idClient",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "WebApi8_Scheduling.Models.ResponseModel\u00601[[WebApi8_Scheduling.Models.ClientModel, WebApi8-Scheduling, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "WebApi8_Scheduling.Controllers.ClientController",
+    "Method": "GetAllClients",
+    "RelativePath": "api/Client/GetAllClients",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idUser",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "WebApi8_Scheduling.Models.ResponseModel\u00601[[System.Collections.Generic.List\u00601[[WebApi8_Scheduling.Models.ClientModel, WebApi8-Scheduling, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "WebApi8_Scheduling.Controllers.ClientController",
+    "Method": "UpdateClient",
+    "RelativePath": "api/Client/UpdateClient",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "clientUpdateDto",
+        "Type": "WebApi8_Scheduling.Dto.Client.ClientUpdateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "WebApi8_Scheduling.Models.ResponseModel\u00601[[WebApi8_Scheduling.Models.ClientModel, WebApi8-Scheduling, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "WebApi8_Scheduling.Controllers.SchedulingController",
+    "Method": "CreateSheduling",
+    "RelativePath": "api/Scheduling/CreateSheduling",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "schedulingCreateDto",
+        "Type": "WebApi8_Scheduling.Dto.Scheduling.SchedulingCreateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "WebApi8_Scheduling.Models.ResponseModel\u00601[[WebApi8_Scheduling.Models.SchedulingModel, WebApi8-Scheduling, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "WebApi8_Scheduling.Controllers.SchedulingController",
+    "Method": "DeleteScheduling",
+    "RelativePath": "api/Scheduling/DeleteScheduling",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idScheduling",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "WebApi8_Scheduling.Models.ResponseModel\u00601[[WebApi8_Scheduling.Models.SchedulingModel, WebApi8-Scheduling, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "WebApi8_Scheduling.Controllers.UserController",
+    "Method": "CreateUser",
+    "RelativePath": "api/User/CreateUser",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "user",
+        "Type": "WebApi8_Scheduling.Dto.User.UserCreateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "WebApi8_Scheduling.Models.ResponseModel\u00601[[WebApi8_Scheduling.Models.UserModel, WebApi8-Scheduling, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  }
+]
