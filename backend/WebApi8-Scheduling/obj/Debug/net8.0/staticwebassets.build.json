@@ -1,11 +1,12 @@
 {
   "Version": 1,
-  "Hash": "jc2VkrSWUZbFadvE/dEZHCDckZ7LS0EHWks1bVcrKko=",
+  "Hash": "XkEXWpr1YwWDWqdqhG6gy397c1Q3LYIJcYB+F2QJZ2I=",
   "Source": "WebApi8-Scheduling",
   "BasePath": "_content/WebApi8-Scheduling",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [],
-  "Assets": []
+  "Assets": [],
+  "Endpoints": []
 }

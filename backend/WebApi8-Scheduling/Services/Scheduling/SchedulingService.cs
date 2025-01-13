@@ -19,7 +19,13 @@ namespace WebApi8_Scheduling.Services.Scheduling
 
             try
             {
-                Console.WriteLine("teste");
+                var userId = await _context.Users.FirstOrDefaultAsync(a => a.Id == scheduling.UserId);
+
+                if (userId == null)
+                {
+                    respost.Mensagem = "User not found";
+                    return respost;
+                }
 
                 var clientId = await _context.Clients.FirstOrDefaultAsync(clientBanco => clientBanco.Id == scheduling.ClientId);
 
@@ -41,6 +47,7 @@ namespace WebApi8_Scheduling.Services.Scheduling
                 {
                     DateHour = scheduling.DateHour,
                     Observation = scheduling.Observation,
+                    UserId = scheduling.UserId,
                     ClientId = scheduling.ClientId,
                     ServiceId = scheduling.ServiceId,
                 };
@@ -84,6 +91,42 @@ namespace WebApi8_Scheduling.Services.Scheduling
 
                 respost.Dados = scheduling;
                 respost.Mensagem = "Scheduling delete successfull!";
+                return respost;
+
+            }
+            catch (Exception ex)
+            {
+                respost.Mensagem = ex.Message;
+                respost.Status = false;
+                return respost;
+            }
+        }
+
+        public async Task<ResponseModel<List<SchedulingModel>>> GetAllSchedulings(int UserId)
+        {
+            ResponseModel<List<SchedulingModel>> respost = new ResponseModel<List<SchedulingModel>>();
+
+            try
+            {
+                var userId = await _context.Users.FirstOrDefaultAsync(a => a.Id == UserId);
+
+                if (userId == null)
+                {
+                    respost.Mensagem = "User not found";
+                    return respost;
+                }
+
+                var schedulings = await _context.Scheduling
+                    .Include(a => a.User)
+                    .Include(a => a.Client)
+                    .Include(a => a.Service)
+                    .Where(a => a.UserId == UserId)
+                    .ToListAsync();
+
+                Console.WriteLine($"Total de registros encontrados: {schedulings.Count}");
+
+                respost.Dados = schedulings;
+                respost.Mensagem = "Get schedulings successfull!";
                 return respost;
 
             }

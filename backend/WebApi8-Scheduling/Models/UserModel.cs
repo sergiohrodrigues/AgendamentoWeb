@@ -10,5 +10,7 @@ namespace WebApi8_Scheduling.Models
         public string Email { get; set; }
         [JsonIgnore]
         public ICollection<ClientModel> Clients { get; set; } = new List<ClientModel>();
+        [JsonIgnore]
+        public ICollection<SchedulingModel> Schedulings { get; set; }
     }
 }

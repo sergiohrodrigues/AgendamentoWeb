@@ -29,5 +29,12 @@ namespace WebApi8_Scheduling.Controllers
             var scheduling = await _schedulingInterface.DeleteScheduling(idScheduling);
             return Ok(scheduling);
         }
+        
+        [HttpGet("GetAllSchedulings")]
+        public async Task<ActionResult<ResponseModel<SchedulingModel>>> GetAllSchedulings(int UserId)
+        {
+            var schedulings = await _schedulingInterface.GetAllSchedulings(UserId);
+            return Ok(schedulings);
+        }
     }
 }

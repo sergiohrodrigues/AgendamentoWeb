@@ -1,12 +1,37 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "E:\\Nova pasta\\scheduling-fullstack\\backend\\",
-  "Documents": [],
+  "WorkspaceRootPath": "B:\\projetos\\scheduling-fullstack\\backend\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{328DBC48-39A2-4604-9606-8A227F6DE953}|WebApi8-Scheduling\\WebApi8-Scheduling.csproj|b:\\projetos\\scheduling-fullstack\\backend\\webapi8-scheduling\\services\\scheduling\\schedulingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{328DBC48-39A2-4604-9606-8A227F6DE953}|WebApi8-Scheduling\\WebApi8-Scheduling.csproj|solutionrelative:webapi8-scheduling\\services\\scheduling\\schedulingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 308,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SchedulingService.cs",
+              "DocumentMoniker": "B:\\projetos\\scheduling-fullstack\\backend\\WebApi8-Scheduling\\Services\\Scheduling\\SchedulingService.cs",
+              "RelativeDocumentMoniker": "WebApi8-Scheduling\\Services\\Scheduling\\SchedulingService.cs",
+              "ToolTip": "B:\\projetos\\scheduling-fullstack\\backend\\WebApi8-Scheduling\\Services\\Scheduling\\SchedulingService.cs",
+              "RelativeToolTip": "WebApi8-Scheduling\\Services\\Scheduling\\SchedulingService.cs",
+              "ViewState": "AgIAAEcAAAAAAAAAAAA9wHIAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-13T18:46:07.514Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }

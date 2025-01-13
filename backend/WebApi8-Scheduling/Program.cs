@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using WebApi8_Scheduling.Data;
 using WebApi8_Scheduling.Services.Client;
 using WebApi8_Scheduling.Services.Scheduling;
+using WebApi8_Scheduling.Services.User;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddScoped<IUserInterface, UserService>();
 builder.Services.AddScoped<IClientInterface, ClientService>();
 builder.Services.AddScoped<ISchedulingInterface, SchedulingService>();
 

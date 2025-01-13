@@ -26,12 +26,21 @@ namespace WebApi8_Scheduling.Data
             modelBuilder.Entity<SchedulingModel>()
                 .HasOne(a => a.Client)
                 .WithMany(c => c.Schedulings)
-                .HasForeignKey(a => a.ClientId);
+                .HasForeignKey(a => a.ClientId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<SchedulingModel>()
                 .HasOne(a => a.Service)
                 .WithMany(s => s.Schedulings)
-                .HasForeignKey(a => a.ServiceId);
+                .HasForeignKey(a => a.ServiceId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<SchedulingModel>()
+                .HasOne(a => a.User)
+                .WithMany(s => s.Schedulings)
+                .HasForeignKey(a => a.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
 
             modelBuilder.Entity<UserModel>()
                 .HasMany(a => a.Clients)

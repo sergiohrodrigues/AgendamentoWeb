@@ -156,6 +156,32 @@
     ]
   },
   {
+    "ContainingType": "WebApi8_Scheduling.Controllers.SchedulingController",
+    "Method": "GetAllSchedulings",
+    "RelativePath": "api/Scheduling/GetAllSchedulings",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "UserId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "WebApi8_Scheduling.Models.ResponseModel\u00601[[WebApi8_Scheduling.Models.SchedulingModel, WebApi8-Scheduling, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "WebApi8_Scheduling.Controllers.UserController",
     "Method": "CreateUser",
     "RelativePath": "api/User/CreateUser",

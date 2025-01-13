@@ -9,6 +9,10 @@ namespace WebApi8_Scheduling.Models
         public string Observation { get; set; }
 
         //Relacionament
+        [JsonIgnore]
+        public int UserId { get; set; }
+        public UserModel User { get; set; }
+
         public int ClientId { get; set; }
         [JsonIgnore]
         public ClientModel Client { get; set; }

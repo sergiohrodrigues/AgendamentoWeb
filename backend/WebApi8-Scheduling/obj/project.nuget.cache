@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "hFIW289oWkU=",
+  "dgSpecHash": "347o+YYYiQo=",
   "success": true,
-  "projectFilePath": "E:\\Nova pasta\\scheduling-fullstack\\backend\\WebApi8-Scheduling\\WebApi8-Scheduling.csproj",
+  "projectFilePath": "B:\\projetos\\scheduling-fullstack\\backend\\WebApi8-Scheduling\\WebApi8-Scheduling.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Sergio\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\Sergio\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",

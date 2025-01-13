@@ -12,8 +12,8 @@ using WebApi8_Scheduling.Data;
 namespace WebApi8_Scheduling.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241128123658_addUserClientRelation")]
-    partial class addUserClientRelation
+    [Migration("20250113181227_addUserInScheduling")]
+    partial class addUserInScheduling
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -80,11 +80,16 @@ namespace WebApi8_Scheduling.Migrations
                     b.Property<int>("ServiceId")
                         .HasColumnType("int");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ClientId");
 
                     b.HasIndex("ServiceId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Scheduling");
                 });
@@ -185,18 +190,26 @@ namespace WebApi8_Scheduling.Migrations
                     b.HasOne("WebApi8_Scheduling.Models.ClientModel", "Client")
                         .WithMany("Schedulings")
                         .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("WebApi8_Scheduling.Models.ServiceModel", "Service")
                         .WithMany("Schedulings")
                         .HasForeignKey("ServiceId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("WebApi8_Scheduling.Models.UserModel", "User")
+                        .WithMany("Schedulings")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Client");
 
                     b.Navigation("Service");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("WebApi8_Scheduling.Models.ClientModel", b =>
@@ -212,6 +225,8 @@ namespace WebApi8_Scheduling.Migrations
             modelBuilder.Entity("WebApi8_Scheduling.Models.UserModel", b =>
                 {
                     b.Navigation("Clients");
+
+                    b.Navigation("Schedulings");
                 });
 #pragma warning restore 612, 618
         }

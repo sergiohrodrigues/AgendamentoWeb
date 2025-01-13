@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace WebApi8_Scheduling.Migrations
 {
     /// <inheritdoc />
-    public partial class addUserClientRelation : Migration
+    public partial class addUserInScheduling : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -74,6 +74,7 @@ namespace WebApi8_Scheduling.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     DateHour = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Observation = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false),
                     ClientId = table.Column<int>(type: "int", nullable: false),
                     ServiceId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -85,13 +86,19 @@ namespace WebApi8_Scheduling.Migrations
                         column: x => x.ClientId,
                         principalTable: "Clients",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Scheduling_Services_ServiceId",
                         column: x => x.ServiceId,
                         principalTable: "Services",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Scheduling_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.InsertData(
@@ -119,6 +126,11 @@ namespace WebApi8_Scheduling.Migrations
                 name: "IX_Scheduling_ServiceId",
                 table: "Scheduling",
                 column: "ServiceId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Scheduling_UserId",
+                table: "Scheduling",
+                column: "UserId");
         }
 
         /// <inheritdoc />

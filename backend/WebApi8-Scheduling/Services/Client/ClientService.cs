@@ -49,7 +49,7 @@ namespace WebApi8_Scheduling.Services.Client
 
             try
             {
-                var userId = await _context.Clients.FirstOrDefaultAsync(a => a.User.Id == client.UserId);
+                var userId = await _context.Users.FirstOrDefaultAsync(a => a.Id == client.UserId);
 
                 if(userId == null)
                 {
