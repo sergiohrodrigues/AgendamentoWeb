@@ -6,5 +6,6 @@ namespace WebApi8_Scheduling.Services.User
     public interface IUserInterface
     {
         Task<ResponseModel<UserModel>> CreateUser(UserCreateDto user);
+        Task<ResponseModel<UserModel>> LoginUser(UserLoginDto userLoginDto);
     }
 }

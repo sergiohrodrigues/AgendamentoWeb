@@ -22,6 +22,13 @@ namespace WebApi8_Scheduling.Controllers
             var newUser = await _userInterface.CreateUser(user);
             return Ok(newUser);
         }
+        
+        [HttpPost("LoginUser")]
+        public async Task<ActionResult<ResponseModel<UserModel>>> LoginUser(UserLoginDto userLoginDto)
+        {
+            var user = await _userInterface.LoginUser(userLoginDto);
+            return Ok(user);
+        }
 
 
     }

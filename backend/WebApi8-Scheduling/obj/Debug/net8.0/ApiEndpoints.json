@@ -206,5 +206,31 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "WebApi8_Scheduling.Controllers.UserController",
+    "Method": "LoginUser",
+    "RelativePath": "api/User/LoginUser",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userLoginDto",
+        "Type": "WebApi8_Scheduling.Dto.User.UserLoginDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "WebApi8_Scheduling.Models.ResponseModel\u00601[[WebApi8_Scheduling.Models.UserModel, WebApi8-Scheduling, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   }
 ]
