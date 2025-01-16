@@ -12,8 +12,8 @@ using WebApi8_Scheduling.Data;
 namespace WebApi8_Scheduling.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250113181227_addUserInScheduling")]
-    partial class addUserInScheduling
+    [Migration("20250116143612_updateUserToEnterprise2")]
+    partial class updateUserToEnterprise2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -37,6 +37,9 @@ namespace WebApi8_Scheduling.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("EnterpriseId")
+                        .HasColumnType("int");
+
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -49,14 +52,40 @@ namespace WebApi8_Scheduling.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserId")
+                    b.HasKey("Id");
+
+                    b.HasIndex("EnterpriseId");
+
+                    b.ToTable("Clients");
+                });
+
+            modelBuilder.Entity("WebApi8_Scheduling.Models.EnterpriseModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Login")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Clients");
+                    b.ToTable("Enterprise");
                 });
 
             modelBuilder.Entity("WebApi8_Scheduling.Models.SchedulingModel", b =>
@@ -73,6 +102,9 @@ namespace WebApi8_Scheduling.Migrations
                     b.Property<DateTime>("DateHour")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("EnterpriseId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Observation")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -80,16 +112,13 @@ namespace WebApi8_Scheduling.Migrations
                     b.Property<int>("ServiceId")
                         .HasColumnType("int");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("ClientId");
 
-                    b.HasIndex("ServiceId");
+                    b.HasIndex("EnterpriseId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("ServiceId");
 
                     b.ToTable("Scheduling");
                 });
@@ -149,40 +178,15 @@ namespace WebApi8_Scheduling.Migrations
                         });
                 });
 
-            modelBuilder.Entity("WebApi8_Scheduling.Models.UserModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Login")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Users");
-                });
-
             modelBuilder.Entity("WebApi8_Scheduling.Models.ClientModel", b =>
                 {
-                    b.HasOne("WebApi8_Scheduling.Models.UserModel", "User")
+                    b.HasOne("WebApi8_Scheduling.Models.EnterpriseModel", "Enterprise")
                         .WithMany("Clients")
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("EnterpriseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("User");
+                    b.Navigation("Enterprise");
                 });
 
             modelBuilder.Entity("WebApi8_Scheduling.Models.SchedulingModel", b =>
@@ -193,23 +197,23 @@ namespace WebApi8_Scheduling.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("WebApi8_Scheduling.Models.EnterpriseModel", "Enterprise")
+                        .WithMany("Schedulings")
+                        .HasForeignKey("EnterpriseId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("WebApi8_Scheduling.Models.ServiceModel", "Service")
                         .WithMany("Schedulings")
                         .HasForeignKey("ServiceId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("WebApi8_Scheduling.Models.UserModel", "User")
-                        .WithMany("Schedulings")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.Navigation("Client");
 
-                    b.Navigation("Service");
+                    b.Navigation("Enterprise");
 
-                    b.Navigation("User");
+                    b.Navigation("Service");
                 });
 
             modelBuilder.Entity("WebApi8_Scheduling.Models.ClientModel", b =>
@@ -217,15 +221,15 @@ namespace WebApi8_Scheduling.Migrations
                     b.Navigation("Schedulings");
                 });
 
-            modelBuilder.Entity("WebApi8_Scheduling.Models.ServiceModel", b =>
-                {
-                    b.Navigation("Schedulings");
-                });
-
-            modelBuilder.Entity("WebApi8_Scheduling.Models.UserModel", b =>
+            modelBuilder.Entity("WebApi8_Scheduling.Models.EnterpriseModel", b =>
                 {
                     b.Navigation("Clients");
 
+                    b.Navigation("Schedulings");
+                });
+
+            modelBuilder.Entity("WebApi8_Scheduling.Models.ServiceModel", b =>
+                {
                     b.Navigation("Schedulings");
                 });
 #pragma warning restore 612, 618

@@ -21,8 +21,8 @@ namespace WebApi8_Scheduling.Services.Client
             try
             {
                 var clients = await _context.Clients
-                    .Include(a => a.User)
-                    .Where(c => c.UserId == idUser)
+                    .Include(a => a.Enterprise)
+                    .Where(c => c.EnterpriseId == idUser)
                     .ToListAsync();
 
                 if (!clients.Any()){
@@ -49,9 +49,9 @@ namespace WebApi8_Scheduling.Services.Client
 
             try
             {
-                var userId = await _context.Users.FirstOrDefaultAsync(a => a.Id == client.UserId);
+                var EnterpriseId = await _context.Enterprise.FirstOrDefaultAsync(a => a.Id == client.EnterpriseId);
 
-                if(userId == null)
+                if(EnterpriseId == null)
                 {
                     respost.Mensagem = "User not found!";
                     return respost;
@@ -63,7 +63,7 @@ namespace WebApi8_Scheduling.Services.Client
                     LastName = client.LastName,
                     Email = client.Email,
                     Tel = client.Tel,
-                    UserId = client.UserId
+                    EnterpriseId = client.EnterpriseId
                 };
 
                 _context.Clients.Add(newClient);

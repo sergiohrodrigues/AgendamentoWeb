@@ -6,22 +6,22 @@ using WebApi8_Scheduling.Models;
 
 namespace WebApi8_Scheduling.Services.User
 {
-    public class UserService : IUserInterface
+    public class EnterpriseService : IEnterpriseInterface
     {
         private readonly AppDbContext _context;
 
-        public UserService(AppDbContext context)
+        public EnterpriseService(AppDbContext context)
         {
             _context = context;
         }
 
-        public async Task<ResponseModel<UserModel>> CreateUser(UserCreateDto userCreateDto)
+        public async Task<ResponseModel<EnterpriseModel>> CreateEnterprise(EnterpriseCreateDto userCreateDto)
         {
-            ResponseModel<UserModel> respost = new ResponseModel<UserModel>();
+            ResponseModel<EnterpriseModel> respost = new ResponseModel<EnterpriseModel>();
 
             try
             {
-                var userExist = await _context.Users
+                var userExist = await _context.Enterprise
                     .FirstOrDefaultAsync(userBanco => userBanco.Login == userCreateDto.Login);
 
                 if(userExist != null)
@@ -30,14 +30,14 @@ namespace WebApi8_Scheduling.Services.User
                     return respost;
                 }
 
-                var newUser = new UserModel
+                var newUser = new EnterpriseModel
                 {
                     Login = userCreateDto.Login,
                     Password = userCreateDto.Password,
                     Email = userCreateDto.Email,
                 };
 
-                _context.Users.Add(newUser);
+                _context.Enterprise.Add(newUser);
                 _context.SaveChanges();
 
                 respost.Dados = newUser;
@@ -54,20 +54,20 @@ namespace WebApi8_Scheduling.Services.User
             }
         }
 
-        public async Task<ResponseModel<UserModel>> LoginUser(UserLoginDto userLoginDto)
+        public async Task<ResponseModel<EnterpriseModel>> LoginEnterprise(EnterpriseLoginDto userLoginDto)
         {
-            ResponseModel<UserModel> respost = new ResponseModel<UserModel>();
+            ResponseModel<EnterpriseModel> respost = new ResponseModel<EnterpriseModel>();
 
             try
             {
-                var user = await _context.Users
+                var user = await _context.Enterprise
                     .FirstOrDefaultAsync(userBanco =>
                         userBanco.Login == userLoginDto.Login &&
                         userBanco.Password == userLoginDto.Password);
 
                 if (user == null)
                 {
-                    var loginExists = await _context.Users
+                    var loginExists = await _context.Enterprise
                         .AnyAsync(userBanco => userBanco.Login == userLoginDto.Login);
 
                     respost.Mensagem = loginExists ? "Incorrect password" : "Login not found";
@@ -75,7 +75,7 @@ namespace WebApi8_Scheduling.Services.User
                     return respost;
                 }
 
-                respost.Dados = new UserModel
+                respost.Dados = new EnterpriseModel
                 {
                     Id = user.Id,
                     Login = user.Login,

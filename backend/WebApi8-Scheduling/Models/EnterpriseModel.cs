@@ -2,9 +2,10 @@
 
 namespace WebApi8_Scheduling.Models
 {
-    public class UserModel
+    public class EnterpriseModel
     {
         public int Id { get; set; }
+        public string Name { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
         public string Email { get; set; }

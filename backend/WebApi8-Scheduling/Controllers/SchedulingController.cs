@@ -31,9 +31,9 @@ namespace WebApi8_Scheduling.Controllers
         }
         
         [HttpGet("GetAllSchedulings")]
-        public async Task<ActionResult<ResponseModel<SchedulingModel>>> GetAllSchedulings(int UserId)
+        public async Task<ActionResult<ResponseModel<SchedulingModel>>> GetAllSchedulings(int EnterpriseId)
         {
-            var schedulings = await _schedulingInterface.GetAllSchedulings(UserId);
+            var schedulings = await _schedulingInterface.GetAllSchedulings(EnterpriseId);
             return Ok(schedulings);
         }
     }

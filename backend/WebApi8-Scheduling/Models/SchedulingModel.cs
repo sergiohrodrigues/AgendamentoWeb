@@ -10,8 +10,8 @@ namespace WebApi8_Scheduling.Models
 
         //Relacionament
         [JsonIgnore]
-        public int UserId { get; set; }
-        public UserModel User { get; set; }
+        public int EnterpriseId { get; set; }
+        public EnterpriseModel Enterprise { get; set; }
 
         public int ClientId { get; set; }
         [JsonIgnore]

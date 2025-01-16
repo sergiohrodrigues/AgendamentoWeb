@@ -1,37 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "B:\\projetos\\scheduling-fullstack\\backend\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{328DBC48-39A2-4604-9606-8A227F6DE953}|WebApi8-Scheduling\\WebApi8-Scheduling.csproj|b:\\projetos\\scheduling-fullstack\\backend\\webapi8-scheduling\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{328DBC48-39A2-4604-9606-8A227F6DE953}|WebApi8-Scheduling\\WebApi8-Scheduling.csproj|solutionrelative:webapi8-scheduling\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": [
-        {
-          "DockedWidth": 308,
-          "SelectedChildIndex": 0,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "B:\\projetos\\scheduling-fullstack\\backend\\WebApi8-Scheduling\\Program.cs",
-              "RelativeDocumentMoniker": "WebApi8-Scheduling\\Program.cs",
-              "ToolTip": "B:\\projetos\\scheduling-fullstack\\backend\\WebApi8-Scheduling\\Program.cs",
-              "RelativeToolTip": "WebApi8-Scheduling\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAdAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-14T14:00:25.36Z",
-              "EditorCaption": ""
-            }
-          ]
-        }
-      ]
+      "DocumentGroups": []
     }
   ]
 }

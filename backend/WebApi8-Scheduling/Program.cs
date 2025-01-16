@@ -23,7 +23,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddScoped<IUserInterface, UserService>();
+builder.Services.AddScoped<IEnterpriseInterface, EnterpriseService>();
 builder.Services.AddScoped<IClientInterface, ClientService>();
 builder.Services.AddScoped<ISchedulingInterface, SchedulingService>();
 

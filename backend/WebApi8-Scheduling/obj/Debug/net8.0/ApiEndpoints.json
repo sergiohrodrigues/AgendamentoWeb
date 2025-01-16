@@ -104,6 +104,58 @@
     ]
   },
   {
+    "ContainingType": "WebApi8_Scheduling.Controllers.EnterpriseController",
+    "Method": "CreateEnterprise",
+    "RelativePath": "api/Enterprise/CreateEnterprise",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "enterprise",
+        "Type": "WebApi8_Scheduling.Dto.User.EnterpriseCreateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "WebApi8_Scheduling.Models.ResponseModel\u00601[[WebApi8_Scheduling.Models.EnterpriseModel, WebApi8-Scheduling, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "WebApi8_Scheduling.Controllers.EnterpriseController",
+    "Method": "LoginEnterprise",
+    "RelativePath": "api/Enterprise/LoginEnterprise",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "enterpriseLoginDto",
+        "Type": "WebApi8_Scheduling.Dto.User.EnterpriseLoginDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "WebApi8_Scheduling.Models.ResponseModel\u00601[[WebApi8_Scheduling.Models.EnterpriseModel, WebApi8-Scheduling, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "WebApi8_Scheduling.Controllers.SchedulingController",
     "Method": "CreateSheduling",
     "RelativePath": "api/Scheduling/CreateSheduling",
@@ -164,7 +216,7 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "UserId",
+        "Name": "EnterpriseId",
         "Type": "System.Int32",
         "IsRequired": false
       }
@@ -172,58 +224,6 @@
     "ReturnTypes": [
       {
         "Type": "WebApi8_Scheduling.Models.ResponseModel\u00601[[WebApi8_Scheduling.Models.SchedulingModel, WebApi8-Scheduling, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "WebApi8_Scheduling.Controllers.UserController",
-    "Method": "CreateUser",
-    "RelativePath": "api/User/CreateUser",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "user",
-        "Type": "WebApi8_Scheduling.Dto.User.UserCreateDto",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "WebApi8_Scheduling.Models.ResponseModel\u00601[[WebApi8_Scheduling.Models.UserModel, WebApi8-Scheduling, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "WebApi8_Scheduling.Controllers.UserController",
-    "Method": "LoginUser",
-    "RelativePath": "api/User/LoginUser",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "userLoginDto",
-        "Type": "WebApi8_Scheduling.Dto.User.UserLoginDto",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "WebApi8_Scheduling.Models.ResponseModel\u00601[[WebApi8_Scheduling.Models.UserModel, WebApi8-Scheduling, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",

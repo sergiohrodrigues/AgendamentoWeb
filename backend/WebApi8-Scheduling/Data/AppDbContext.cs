@@ -13,7 +13,7 @@ namespace WebApi8_Scheduling.Data
         {
         }
 
-        public DbSet<UserModel> Users { get; set; }
+        public DbSet<EnterpriseModel> Enterprise { get; set; }
         public DbSet<ClientModel> Clients { get; set; }
         public DbSet<ServiceModel> Services { get; set; }
         public DbSet<SchedulingModel> Scheduling { get; set; }
@@ -36,16 +36,16 @@ namespace WebApi8_Scheduling.Data
                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<SchedulingModel>()
-                .HasOne(a => a.User)
+                .HasOne(a => a.Enterprise)
                 .WithMany(s => s.Schedulings)
-                .HasForeignKey(a => a.UserId)
+                .HasForeignKey(a => a.EnterpriseId)
                 .OnDelete(DeleteBehavior.Restrict);
 
 
-            modelBuilder.Entity<UserModel>()
+            modelBuilder.Entity<EnterpriseModel>()
                 .HasMany(a => a.Clients)
-                .WithOne(c => c.User)
-                .HasForeignKey(a => a.UserId);
+                .WithOne(c => c.Enterprise)
+                .HasForeignKey(a => a.EnterpriseId);
 
             modelBuilder.Entity<ServiceModel>()
                 .Property(s => s.Price)

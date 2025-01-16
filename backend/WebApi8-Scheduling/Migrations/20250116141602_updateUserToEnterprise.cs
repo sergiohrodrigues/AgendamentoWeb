@@ -8,11 +8,27 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace WebApi8_Scheduling.Migrations
 {
     /// <inheritdoc />
-    public partial class addUserInScheduling : Migration
+    public partial class updateUserToEnterprise : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Enterprise",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Login = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Enterprise", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Services",
                 columns: table => new
@@ -29,21 +45,6 @@ namespace WebApi8_Scheduling.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Users",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Login = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Users", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Clients",
                 columns: table => new
                 {
@@ -53,15 +54,15 @@ namespace WebApi8_Scheduling.Migrations
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Tel = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false)
+                    EnterpriseId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Clients", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Clients_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
+                        name: "FK_Clients_Enterprise_EnterpriseId",
+                        column: x => x.EnterpriseId,
+                        principalTable: "Enterprise",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -74,7 +75,7 @@ namespace WebApi8_Scheduling.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     DateHour = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Observation = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false),
+                    EnterpriseId = table.Column<int>(type: "int", nullable: false),
                     ClientId = table.Column<int>(type: "int", nullable: false),
                     ServiceId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -88,15 +89,15 @@ namespace WebApi8_Scheduling.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Scheduling_Services_ServiceId",
-                        column: x => x.ServiceId,
-                        principalTable: "Services",
+                        name: "FK_Scheduling_Enterprise_EnterpriseId",
+                        column: x => x.EnterpriseId,
+                        principalTable: "Enterprise",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Scheduling_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
+                        name: "FK_Scheduling_Services_ServiceId",
+                        column: x => x.ServiceId,
+                        principalTable: "Services",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -113,9 +114,9 @@ namespace WebApi8_Scheduling.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Clients_UserId",
+                name: "IX_Clients_EnterpriseId",
                 table: "Clients",
-                column: "UserId");
+                column: "EnterpriseId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Scheduling_ClientId",
@@ -123,14 +124,14 @@ namespace WebApi8_Scheduling.Migrations
                 column: "ClientId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Scheduling_EnterpriseId",
+                table: "Scheduling",
+                column: "EnterpriseId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Scheduling_ServiceId",
                 table: "Scheduling",
                 column: "ServiceId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Scheduling_UserId",
-                table: "Scheduling",
-                column: "UserId");
         }
 
         /// <inheritdoc />
@@ -146,7 +147,7 @@ namespace WebApi8_Scheduling.Migrations
                 name: "Services");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "Enterprise");
         }
     }
 }

@@ -19,9 +19,9 @@ namespace WebApi8_Scheduling.Services.Scheduling
 
             try
             {
-                var userId = await _context.Users.FirstOrDefaultAsync(a => a.Id == scheduling.UserId);
+                var EnterpriseId = await _context.Enterprise.FirstOrDefaultAsync(a => a.Id == scheduling.EnterpriseId);
 
-                if (userId == null)
+                if (EnterpriseId == null)
                 {
                     respost.Mensagem = "User not found";
                     return respost;
@@ -47,7 +47,7 @@ namespace WebApi8_Scheduling.Services.Scheduling
                 {
                     DateHour = scheduling.DateHour,
                     Observation = scheduling.Observation,
-                    UserId = scheduling.UserId,
+                    EnterpriseId = scheduling.EnterpriseId,
                     ClientId = scheduling.ClientId,
                     ServiceId = scheduling.ServiceId,
                 };
@@ -102,25 +102,25 @@ namespace WebApi8_Scheduling.Services.Scheduling
             }
         }
 
-        public async Task<ResponseModel<List<SchedulingModel>>> GetAllSchedulings(int UserId)
+        public async Task<ResponseModel<List<SchedulingModel>>> GetAllSchedulings(int EnterpriseId)
         {
             ResponseModel<List<SchedulingModel>> respost = new ResponseModel<List<SchedulingModel>>();
 
             try
             {
-                var userId = await _context.Users.FirstOrDefaultAsync(a => a.Id == UserId);
+                var enterprise = await _context.Enterprise.FirstOrDefaultAsync(a => a.Id == EnterpriseId);
 
-                if (userId == null)
+                if (enterprise == null)
                 {
                     respost.Mensagem = "User not found";
                     return respost;
                 }
 
                 var schedulings = await _context.Scheduling
-                    .Include(a => a.User)
+                    .Include(a => a.Enterprise)
                     .Include(a => a.Client)
                     .Include(a => a.Service)
-                    .Where(a => a.UserId == UserId)
+                    .Where(a => a.EnterpriseId == EnterpriseId)
                     .ToListAsync();
 
                 Console.WriteLine($"Total de registros encontrados: {schedulings.Count}");

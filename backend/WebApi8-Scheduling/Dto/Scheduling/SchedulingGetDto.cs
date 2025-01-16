@@ -2,6 +2,6 @@
 {
     public class SchedulingGetDto
     {
-        public int UserId { get; set; }
+        public int EnterpriseId { get; set; }
     }
 }

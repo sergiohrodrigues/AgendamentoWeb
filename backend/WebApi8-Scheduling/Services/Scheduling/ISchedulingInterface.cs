@@ -5,7 +5,7 @@ namespace WebApi8_Scheduling.Services.Scheduling
 {
     public interface ISchedulingInterface
     {
-        Task<ResponseModel<List<SchedulingModel>>> GetAllSchedulings(int UserId);
+        Task<ResponseModel<List<SchedulingModel>>> GetAllSchedulings(int EnterpriseId);
         Task<ResponseModel<SchedulingModel>> CreateSheduling(SchedulingCreateDto scheduling);
         Task<ResponseModel<SchedulingModel>> DeleteScheduling(int idScheduling);
     }

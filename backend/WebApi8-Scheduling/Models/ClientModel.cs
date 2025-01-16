@@ -12,9 +12,9 @@ namespace WebApi8_Scheduling.Models
         [JsonIgnore]
         public ICollection<SchedulingModel> Schedulings { get; set; }
 
-        public int UserId { get; set; }
+        public int EnterpriseId { get; set; }
         [JsonIgnore]
-        public UserModel User { get; set; }
+        public EnterpriseModel Enterprise { get; set; }
 
     }
 }
