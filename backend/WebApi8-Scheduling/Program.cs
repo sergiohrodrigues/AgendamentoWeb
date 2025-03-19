@@ -26,6 +26,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IEnterpriseInterface, EnterpriseService>();
 builder.Services.AddScoped<IClientInterface, ClientService>();
 builder.Services.AddScoped<ISchedulingInterface, SchedulingService>();
+builder.Services.AddScoped<IServiceInterface, ServiceService>();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
 {

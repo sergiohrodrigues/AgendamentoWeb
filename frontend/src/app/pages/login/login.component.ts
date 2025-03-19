@@ -1,28 +1,36 @@
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
-import { Router, RouterOutlet } from '@angular/router';
+import { Router } from '@angular/router';
 import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, MatInputModule, MatIconModule, MatButtonModule, MatDividerModule, HttpClientModule, RouterOutlet],
+  imports: [],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
   title = 'frontend';
-  hide: boolean = true;
-  results: any[] = [];
+  /*hide: boolean = true;
+  results: any[] = [];*/
 
-  constructor(private apiService: ApiService, private router: Router) {}
+  constructor(private apiService: ApiService, 
+    // private router: Router
+  ) {}
 
-  user: any = {
+  private router = inject(Router);
+
+  googleSignIn(){
+    this.router.navigate(['/user']);
+  }
+  
+  /*user: any = {
     login: '',
     password: ''
   }
@@ -44,5 +52,7 @@ export class LoginComponent {
         console.error('Erro ao buscar dados:', err);
       },
     });
+  }*/
+
+
   }
-}

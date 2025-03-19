@@ -21,14 +21,14 @@ namespace WebApi8_Scheduling.Services.User
 
             try
             {
-                var userExist = await _context.Enterprise
-                    .FirstOrDefaultAsync(userBanco => userBanco.Login == userCreateDto.Login);
+                //var userExist = await _context.Enterprise
+                //    .FirstOrDefaultAsync(userBanco => userBanco.Login == userCreateDto.Login);
 
-                if(userExist != null)
-                {
-                    respost.Mensagem = "User existent, try with another login please";
-                    return respost;
-                }
+                //if(userExist != null)
+                //{
+                //    respost.Mensagem = "User existent, try with another login please";
+                //    return respost;
+                //}
 
                 var newUser = new EnterpriseModel
                 {
