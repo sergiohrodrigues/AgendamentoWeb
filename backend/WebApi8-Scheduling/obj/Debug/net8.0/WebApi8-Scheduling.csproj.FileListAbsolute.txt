@@ -332,10 +332,10 @@ B:\projetos\scheduling-fullstack\backend\WebApi8-Scheduling\obj\Debug\net8.0\sta
 B:\projetos\scheduling-fullstack\backend\WebApi8-Scheduling\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.WebApi8-Scheduling.props
 B:\projetos\scheduling-fullstack\backend\WebApi8-Scheduling\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.WebApi8-Scheduling.props
 B:\projetos\scheduling-fullstack\backend\WebApi8-Scheduling\obj\Debug\net8.0\staticwebassets.pack.json
-B:\projetos\scheduling-fullstack\backend\WebApi8-Scheduling\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 B:\projetos\scheduling-fullstack\backend\WebApi8-Scheduling\obj\Debug\net8.0\WebApi8-.E65C8D11.Up2Date
 B:\projetos\scheduling-fullstack\backend\WebApi8-Scheduling\obj\Debug\net8.0\WebApi8-Scheduling.dll
 B:\projetos\scheduling-fullstack\backend\WebApi8-Scheduling\obj\Debug\net8.0\refint\WebApi8-Scheduling.dll
 B:\projetos\scheduling-fullstack\backend\WebApi8-Scheduling\obj\Debug\net8.0\WebApi8-Scheduling.pdb
 B:\projetos\scheduling-fullstack\backend\WebApi8-Scheduling\obj\Debug\net8.0\WebApi8-Scheduling.genruntimeconfig.cache
 B:\projetos\scheduling-fullstack\backend\WebApi8-Scheduling\obj\Debug\net8.0\ref\WebApi8-Scheduling.dll
+B:\projetos\scheduling-fullstack\backend\WebApi8-Scheduling\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

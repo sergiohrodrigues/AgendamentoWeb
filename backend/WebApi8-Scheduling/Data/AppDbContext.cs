@@ -13,8 +13,8 @@ namespace WebApi8_Scheduling.Data
         {
         }
 
-        public DbSet<EnterpriseModel> Enterprise { get; set; }
-        public DbSet<ClientModel> Clients { get; set; }
+        //public DbSet<EnterpriseModel> Enterprise { get; set; }
+        //public DbSet<ClientModel> Clients { get; set; }
         public DbSet<ServiceModel> Services { get; set; }
         public DbSet<SchedulingModel> Scheduling { get; set; }
 
@@ -23,11 +23,11 @@ namespace WebApi8_Scheduling.Data
             base.OnModelCreating(modelBuilder);
 
             // Configurações adicionais, se necessário
-            modelBuilder.Entity<SchedulingModel>()
-                .HasOne(a => a.Client)
-                .WithMany(c => c.Schedulings)
-                .HasForeignKey(a => a.ClientId)
-                .OnDelete(DeleteBehavior.Restrict);
+            //modelBuilder.Entity<SchedulingModel>()
+            //    .HasOne(a => a.Client)
+            //    .WithMany(c => c.Schedulings)
+            //    .HasForeignKey(a => a.ClientId)
+            //    .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<SchedulingModel>()
                 .HasOne(a => a.Service)
@@ -35,17 +35,17 @@ namespace WebApi8_Scheduling.Data
                 .HasForeignKey(a => a.ServiceId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<SchedulingModel>()
-                .HasOne(a => a.Enterprise)
-                .WithMany(s => s.Schedulings)
-                .HasForeignKey(a => a.EnterpriseId)
-                .OnDelete(DeleteBehavior.Restrict);
+            //modelBuilder.Entity<SchedulingModel>()
+            //    .HasOne(a => a.Enterprise)
+            //    .WithMany(s => s.Schedulings)
+            //    .HasForeignKey(a => a.EnterpriseId)
+            //    .OnDelete(DeleteBehavior.Restrict);
 
 
-            modelBuilder.Entity<EnterpriseModel>()
-                .HasMany(a => a.Clients)
-                .WithOne(c => c.Enterprise)
-                .HasForeignKey(a => a.EnterpriseId);
+            //modelBuilder.Entity<EnterpriseModel>()
+            //    .HasMany(a => a.Clients)
+            //    .WithOne(c => c.Enterprise)
+            //    .HasForeignKey(a => a.EnterpriseId);
 
             modelBuilder.Entity<ServiceModel>()
                 .Property(s => s.Price)

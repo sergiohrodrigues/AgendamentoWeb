@@ -12,8 +12,8 @@ using WebApi8_Scheduling.Data;
 namespace WebApi8_Scheduling.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250116143612_updateUserToEnterprise2")]
-    partial class updateUserToEnterprise2
+    [Migration("20250429010719_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,69 +25,6 @@ namespace WebApi8_Scheduling.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("WebApi8_Scheduling.Models.ClientModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("EnterpriseId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Tel")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EnterpriseId");
-
-                    b.ToTable("Clients");
-                });
-
-            modelBuilder.Entity("WebApi8_Scheduling.Models.EnterpriseModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Login")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Enterprise");
-                });
-
             modelBuilder.Entity("WebApi8_Scheduling.Models.SchedulingModel", b =>
                 {
                     b.Property<int>("Id")
@@ -96,14 +33,8 @@ namespace WebApi8_Scheduling.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("ClientId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("DateHour")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("EnterpriseId")
-                        .HasColumnType("int");
 
                     b.Property<string>("Observation")
                         .IsRequired()
@@ -113,10 +44,6 @@ namespace WebApi8_Scheduling.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ClientId");
-
-                    b.HasIndex("EnterpriseId");
 
                     b.HasIndex("ServiceId");
 
@@ -178,54 +105,15 @@ namespace WebApi8_Scheduling.Migrations
                         });
                 });
 
-            modelBuilder.Entity("WebApi8_Scheduling.Models.ClientModel", b =>
-                {
-                    b.HasOne("WebApi8_Scheduling.Models.EnterpriseModel", "Enterprise")
-                        .WithMany("Clients")
-                        .HasForeignKey("EnterpriseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Enterprise");
-                });
-
             modelBuilder.Entity("WebApi8_Scheduling.Models.SchedulingModel", b =>
                 {
-                    b.HasOne("WebApi8_Scheduling.Models.ClientModel", "Client")
-                        .WithMany("Schedulings")
-                        .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("WebApi8_Scheduling.Models.EnterpriseModel", "Enterprise")
-                        .WithMany("Schedulings")
-                        .HasForeignKey("EnterpriseId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.HasOne("WebApi8_Scheduling.Models.ServiceModel", "Service")
                         .WithMany("Schedulings")
                         .HasForeignKey("ServiceId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("Client");
-
-                    b.Navigation("Enterprise");
-
                     b.Navigation("Service");
-                });
-
-            modelBuilder.Entity("WebApi8_Scheduling.Models.ClientModel", b =>
-                {
-                    b.Navigation("Schedulings");
-                });
-
-            modelBuilder.Entity("WebApi8_Scheduling.Models.EnterpriseModel", b =>
-                {
-                    b.Navigation("Clients");
-
-                    b.Navigation("Schedulings");
                 });
 
             modelBuilder.Entity("WebApi8_Scheduling.Models.ServiceModel", b =>
