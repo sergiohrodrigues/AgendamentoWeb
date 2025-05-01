@@ -29,35 +29,35 @@ namespace WebApi8_Scheduling.Services.Scheduling
 
                 //var clientId = await _context.Clients.FirstOrDefaultAsync(clientBanco => clientBanco.Id == scheduling.ClientId);
 
-                //if(clientId == null)
+                //if (clientId == null)
                 //{
                 //    respost.Mensagem = "Client not found";
                 //    return respost;
                 //}
 
-                //var serviceId = await _context.Services.FirstOrDefaultAsync(serviceBanco => serviceBanco.Id == scheduling.ServiceId);
+                var serviceId = await _context.Services.FirstOrDefaultAsync(serviceBanco => serviceBanco.Id == scheduling.ServiceId);
 
-                //if (serviceId == null)
-                //{
-                //    respost.Mensagem = "Service not found";
-                //    return respost;
-                //}
+                if (serviceId == null)
+                {
+                    respost.Mensagem = "Service not found";
+                    return respost;
+                }
 
-                //var newScheduling = new SchedulingModel()
-                //{
-                //    DateHour = scheduling.DateHour,
-                //    Observation = scheduling.Observation,
-                //    EnterpriseId = scheduling.EnterpriseId,
-                //    ClientId = scheduling.ClientId,
-                //    ServiceId = scheduling.ServiceId,
-                //};
+                var newScheduling = new SchedulingModel()
+                {
+                    DateHour = scheduling.DateHour,
+                    Observation = scheduling.Observation,
+                    //EnterpriseId = scheduling.EnterpriseId,
+                    //ClientId = scheduling.ClientId,
+                    ServiceId = scheduling.ServiceId,
+                };
 
-                //_context.Scheduling.Add(newScheduling);
-                //_context.SaveChanges();
+                _context.Scheduling.Add(newScheduling);
+                _context.SaveChanges();
 
-                //respost.Dados = newScheduling;
+                respost.Dados = newScheduling;
 
-                //respost.Mensagem = "Scheduling created successfull!";
+                respost.Mensagem = "Scheduling created successfull!";
                 return respost;
 
             }

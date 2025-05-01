@@ -16,21 +16,21 @@ namespace WebApi8_Scheduling.Controllers
             _schedulingInterface = schedulingInterface;
         }
 
-        [HttpPost("CreateSheduling")]
+        [HttpPost]
         public async Task<ActionResult<ResponseModel<SchedulingModel>>> CreateSheduling(SchedulingCreateDto schedulingCreateDto)
         {
             var scheduling = await _schedulingInterface.CreateSheduling(schedulingCreateDto);
             return Ok(scheduling);
         }
         
-        [HttpDelete("DeleteScheduling")]
+        [HttpDelete]
         public async Task<ActionResult<ResponseModel<SchedulingModel>>> DeleteScheduling(int idScheduling)
         {
             var scheduling = await _schedulingInterface.DeleteScheduling(idScheduling);
             return Ok(scheduling);
         }
         
-        [HttpGet("GetAllSchedulings")]
+        [HttpGet]
         public async Task<ActionResult<ResponseModel<SchedulingModel>>> GetAllSchedulings(int EnterpriseId)
         {
             var schedulings = await _schedulingInterface.GetAllSchedulings(EnterpriseId);

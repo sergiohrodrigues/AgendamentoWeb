@@ -10,5 +10,11 @@ namespace WebApi8_Scheduling.Models
         public decimal Price { get; set; }
         [JsonIgnore]
         public ICollection<SchedulingModel> Schedulings { get; set; }
+        public int EnterpriseId { get; set; }
+        [JsonIgnore]
+        public EnterpriseModel Enterprise{ get; set; }
+        public int ProfessionalId { get; set; }
+        [JsonIgnore]
+        public ProfessionalModel Professional{ get; set; }
     }
 }

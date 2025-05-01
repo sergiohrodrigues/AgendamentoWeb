@@ -1,5 +1,88 @@
 [
   {
+    "ContainingType": "WebApi8_Scheduling.Controllers.ClientController",
+    "Method": "CreateClient",
+    "RelativePath": "api/Client",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pClient",
+        "Type": "WebApi8_Scheduling.Dto.Client.ClientCreateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "WebApi8_Scheduling.Models.ResponseModel\u00601[[WebApi8_Scheduling.Models.ClientModel, WebApi8-Scheduling, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "WebApi8_Scheduling.Controllers.ClientController",
+    "Method": "DeleteClient",
+    "RelativePath": "api/Client",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pCLientId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "WebApi8_Scheduling.Models.ResponseModel\u00601[[WebApi8_Scheduling.Models.ClientModel, WebApi8-Scheduling, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "WebApi8_Scheduling.Controllers.ClientController",
+    "Method": "UpdateClient",
+    "RelativePath": "api/Client/{clientId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "clientId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "pClient",
+        "Type": "WebApi8_Scheduling.Dto.Client.ClientUpdateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "WebApi8_Scheduling.Models.ResponseModel\u00601[[WebApi8_Scheduling.Models.ClientModel, WebApi8-Scheduling, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "WebApi8_Scheduling.Controllers.DayWithTimesController",
     "Method": "GetTimesToYear",
     "RelativePath": "api/DayWithTimes",
@@ -10,9 +93,87 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "WebApi8_Scheduling.Controllers.EnterpriseController",
+    "Method": "CreateEnterprise",
+    "RelativePath": "api/Enterprise",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "enterprise",
+        "Type": "WebApi8_Scheduling.Dto.User.EnterpriseCreateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "WebApi8_Scheduling.Models.ResponseModel\u00601[[WebApi8_Scheduling.Models.EnterpriseModel, WebApi8-Scheduling, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "WebApi8_Scheduling.Controllers.EnterpriseController",
+    "Method": "LoginEnterprise",
+    "RelativePath": "api/Enterprise/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "enterpriseLoginDto",
+        "Type": "WebApi8_Scheduling.Dto.User.EnterpriseLoginDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "WebApi8_Scheduling.Models.ResponseModel\u00601[[WebApi8_Scheduling.Models.EnterpriseModel, WebApi8-Scheduling, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "WebApi8_Scheduling.Controllers.ProfessionalController",
+    "Method": "CreateProfessional",
+    "RelativePath": "api/Professional",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pProfessional",
+        "Type": "WebApi8_Scheduling.Dto.Professional.ProfessionalCreateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "WebApi8_Scheduling.Models.ResponseModel\u00601[[WebApi8_Scheduling.Models.SchedulingModel, WebApi8-Scheduling, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "WebApi8_Scheduling.Controllers.SchedulingController",
     "Method": "CreateSheduling",
-    "RelativePath": "api/Scheduling/CreateSheduling",
+    "RelativePath": "api/Scheduling",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -38,7 +199,7 @@
   {
     "ContainingType": "WebApi8_Scheduling.Controllers.SchedulingController",
     "Method": "DeleteScheduling",
-    "RelativePath": "api/Scheduling/DeleteScheduling",
+    "RelativePath": "api/Scheduling",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -64,7 +225,7 @@
   {
     "ContainingType": "WebApi8_Scheduling.Controllers.SchedulingController",
     "Method": "GetAllSchedulings",
-    "RelativePath": "api/Scheduling/GetAllSchedulings",
+    "RelativePath": "api/Scheduling",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -90,7 +251,7 @@
   {
     "ContainingType": "WebApi8_Scheduling.Controllers.ServiceController",
     "Method": "GetAllServices",
-    "RelativePath": "api/Service/GetAllServices",
+    "RelativePath": "api/Service",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

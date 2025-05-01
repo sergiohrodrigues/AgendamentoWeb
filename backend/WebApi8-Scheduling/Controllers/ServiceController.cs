@@ -16,7 +16,7 @@ namespace WebApi8_Scheduling.Controllers
             _serviceInterface = serviceInterface;
         }
 
-        [HttpGet("GetAllServices")]
+        [HttpGet]
         public async Task<ActionResult<ResponseModel<List<ServiceModel>>>> GetAllServices()
         {
             var services = await _serviceInterface.GetAllServices();
