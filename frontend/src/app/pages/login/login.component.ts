@@ -8,9 +8,11 @@ import {} from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ApiService } from '../../services/api.service';
 
+import { ButtonModule} from 'primeng/button';
+
 @Component({
     selector: 'app-login',
-    imports: [],
+    imports: [ButtonModule],
     templateUrl: './login.component.html',
     styleUrl: './login.component.css'
 })

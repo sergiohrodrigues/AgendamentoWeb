@@ -1,1 +1,9 @@
-<p>home works! asdasdasd</p>
+<div *ngIf="dayWithTimes.length > 0">
+    <div *ngFor="let day of dayWithTimes">
+        <h3>{{ day.dayOfWeekName }} - {{ day.day }}</h3>
+        
+        <div style="display: flex; padding: 0.5rem; gap: 0.5rem; flex-wrap: wrap;">
+            <p-button *ngFor="let time of day.times" [label]="time"></p-button>
+        </div>
+    </div>
+</div>

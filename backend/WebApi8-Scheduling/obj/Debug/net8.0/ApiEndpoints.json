@@ -267,5 +267,31 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "WebApi8_Scheduling.Controllers.ServiceController",
+    "Method": "CreateService",
+    "RelativePath": "api/Service",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pService",
+        "Type": "WebApi8_Scheduling.Dto.Service.ServiceCreateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "WebApi8_Scheduling.Models.ResponseModel\u00601[[WebApi8_Scheduling.Models.ServiceModel, WebApi8-Scheduling, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   }
 ]

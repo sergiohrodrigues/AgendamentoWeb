@@ -1,7 +1,12 @@
+# Ignore arquivos de build do .NET
+*.cache
+
 # Visual Studio
 .vs/
 *.user
 *.suo
+*.userosscache
+*.sln.docstates
 
 # Build results
 bin/
@@ -14,3 +19,11 @@ obj/
 *.dll
 *.exe
 *.pdb
+
+# Ignore arquivos de backup do VS Code
+*.code-workspace
+*.backup.json
+
+# Ignore node_modules e arquivos de build do frontend
+node_modules/
+dist/

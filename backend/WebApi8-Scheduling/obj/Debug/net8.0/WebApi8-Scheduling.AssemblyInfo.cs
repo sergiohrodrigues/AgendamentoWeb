@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WebApi8-Scheduling")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e21d719ae0829923805b16b02cfc28a0273a0422")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+21dac14fd44000f3276f85111d8bce7c6c0b9021")]
 [assembly: System.Reflection.AssemblyProductAttribute("WebApi8-Scheduling")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WebApi8-Scheduling")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
