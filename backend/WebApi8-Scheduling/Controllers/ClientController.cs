@@ -37,10 +37,10 @@ namespace WebApi8_Scheduling.Controllers
             return Ok(client);
         }
 
-        [HttpDelete]
-        public async Task<ActionResult<ResponseModel<ClientModel>>> DeleteClient(int pCLientId)
+        [HttpDelete("{clientId}")]
+        public async Task<ActionResult<ResponseModel<ClientModel>>> DeleteClient(int clientId)
         {
-            var client = await _clientInterface.DeleteClient(pCLientId);
+            var client = await _clientInterface.DeleteClient(clientId);
             return Ok(client);
         }
 
