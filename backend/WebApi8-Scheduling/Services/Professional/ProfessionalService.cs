@@ -18,6 +18,14 @@ namespace WebApi8_Scheduling.Services.Professional
 
             try
             {
+                var enterprise = _context.Enterprise.FirstOrDefault(p => p.Id == pProfessional.EnterpriseId);
+
+                if (enterprise == null)
+                {
+                    respost.Mensagem = "Enterprise not found!";
+                    return respost;
+                }
+
                 var newProfessinoal = new ProfessionalModel
                 {
                     Nome = pProfessional.Nome,

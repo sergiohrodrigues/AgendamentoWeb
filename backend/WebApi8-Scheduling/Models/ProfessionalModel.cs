@@ -20,6 +20,8 @@ namespace WebApi8_Scheduling.Models
 
         [JsonIgnore]
         public ICollection<ServiceModel> Services { get; set; } = new List<ServiceModel>();
+        [JsonIgnore]
+        public ICollection<AgendaBaseModel> AgendasBase { get; set; } = new List<AgendaBaseModel>();
 
 
         // Lista de serviços que o profissional pode realizar

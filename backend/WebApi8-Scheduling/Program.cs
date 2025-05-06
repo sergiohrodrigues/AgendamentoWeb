@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using WebApi8_Scheduling.Data;
+using WebApi8_Scheduling.Services.AgendaBase;
 using WebApi8_Scheduling.Services.Client;
 using WebApi8_Scheduling.Services.Professional;
 using WebApi8_Scheduling.Services.Scheduling;
@@ -33,6 +34,7 @@ builder.Services.AddScoped<ISchedulingInterface, SchedulingService>();
 builder.Services.AddScoped<IServiceInterface, ServiceService>();
 builder.Services.AddScoped<ITimeService, TimeService>();
 builder.Services.AddScoped<IProfessionalService, ProfessionalService>();
+builder.Services.AddScoped<IAgendaBaseService, AgendaBaseService>();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
