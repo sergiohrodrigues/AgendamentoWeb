@@ -7,5 +7,6 @@ namespace WebApi8_Scheduling.Services.AgendaBase
     {
         Task<ResponseModel<AgendaBaseModel>> CreateAgendaBase(AgendaBaseCreateDto pAgendaBaseDto);
         Task<ResponseModel<List<AgendaBaseModel>>> AddDefaultSchedules(int pProfessionalId);
+        Task<ResponseModel<AgendaBaseModel>> EditAgendaBase(int pProfessionalId, AgendaBaseEditDto pAgendaBaseEditDto);
     }
 }

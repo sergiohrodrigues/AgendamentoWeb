@@ -105,5 +105,47 @@ namespace WebApi8_Scheduling.Services.AgendaBase
                 return respost;
             }
         }
+
+        public async Task<ResponseModel<AgendaBaseModel>> EditAgendaBase(int pProfessionalId, AgendaBaseEditDto pAgendaBaseEditDto)
+        {
+            ResponseModel<AgendaBaseModel> respost = new ResponseModel<AgendaBaseModel>();
+
+            try
+            {
+                var xProfessional = await _context.Professional.FirstOrDefaultAsync(a => a.Id == pProfessionalId);
+
+                if (xProfessional == null)
+                {
+                    respost.Mensagem = "Professional not found!";
+                    return respost;
+                }
+
+                var xAgendaBase = await _context.AgendaBase.FirstOrDefaultAsync(p => p.ProfessionalId == pProfessionalId && p.DayWeek == pAgendaBaseEditDto.DayWeek);
+
+                if (xAgendaBase == null)
+                {
+                    respost.Mensagem = "Agenda base not found!";
+                    return respost;
+                }
+
+                xAgendaBase.DayWeek = pAgendaBaseEditDto.DayWeek;
+                xAgendaBase.StartTime = pAgendaBaseEditDto.StartTime;
+                xAgendaBase.EndTime = pAgendaBaseEditDto.EndTime;
+
+                _context.AgendaBase.Update(xAgendaBase);
+                _context.SaveChanges();
+
+                respost.Dados = xAgendaBase;
+                respost.Mensagem = "Agenda base edited successfully!";
+
+                return respost;
+            }
+            catch (Exception ex)
+            {
+                respost.Mensagem = ex.Message;
+                respost.Status = false;
+                return respost;
+            }
+        }
     }
 }

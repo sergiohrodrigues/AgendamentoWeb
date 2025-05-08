@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace WebApi8_Scheduling.Migrations
 {
     /// <inheritdoc />
-    public partial class updateservicedatabase : Migration
+    public partial class addWorkShiftInAgendaBase : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -27,6 +27,19 @@ namespace WebApi8_Scheduling.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Enterprise", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "WorkShift",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nome = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_WorkShift", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -69,6 +82,35 @@ namespace WebApi8_Scheduling.Migrations
                         name: "FK_Professional_Enterprise_EnterpriseId",
                         column: x => x.EnterpriseId,
                         principalTable: "Enterprise",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AgendaBase",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    DayWeek = table.Column<int>(type: "int", nullable: false),
+                    StartTime = table.Column<TimeSpan>(type: "time", nullable: false),
+                    EndTime = table.Column<TimeSpan>(type: "time", nullable: false),
+                    ProfessionalId = table.Column<int>(type: "int", nullable: false),
+                    WorkShiftId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AgendaBase", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AgendaBase_Professional_ProfessionalId",
+                        column: x => x.ProfessionalId,
+                        principalTable: "Professional",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_AgendaBase_WorkShift_WorkShiftId",
+                        column: x => x.WorkShiftId,
+                        principalTable: "WorkShift",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -124,6 +166,16 @@ namespace WebApi8_Scheduling.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_AgendaBase_ProfessionalId",
+                table: "AgendaBase",
+                column: "ProfessionalId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AgendaBase_WorkShiftId",
+                table: "AgendaBase",
+                column: "WorkShiftId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Clients_EnterpriseId",
                 table: "Clients",
                 column: "EnterpriseId");
@@ -153,10 +205,16 @@ namespace WebApi8_Scheduling.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "AgendaBase");
+
+            migrationBuilder.DropTable(
                 name: "Clients");
 
             migrationBuilder.DropTable(
                 name: "Scheduling");
+
+            migrationBuilder.DropTable(
+                name: "WorkShift");
 
             migrationBuilder.DropTable(
                 name: "Services");

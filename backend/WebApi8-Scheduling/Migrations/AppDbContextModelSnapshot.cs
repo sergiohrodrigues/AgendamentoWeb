@@ -42,9 +42,14 @@ namespace WebApi8_Scheduling.Migrations
                     b.Property<TimeSpan>("StartTime")
                         .HasColumnType("time");
 
+                    b.Property<int>("WorkShiftId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ProfessionalId");
+
+                    b.HasIndex("WorkShiftId");
 
                     b.ToTable("AgendaBase");
                 });
@@ -209,6 +214,23 @@ namespace WebApi8_Scheduling.Migrations
                     b.ToTable("Services");
                 });
 
+            modelBuilder.Entity("WebApi8_Scheduling.Models.WorkShiftModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("WorkShift");
+                });
+
             modelBuilder.Entity("WebApi8_Scheduling.Models.AgendaBaseModel", b =>
                 {
                     b.HasOne("WebApi8_Scheduling.Models.ProfessionalModel", "Professional")
@@ -217,7 +239,15 @@ namespace WebApi8_Scheduling.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("WebApi8_Scheduling.Models.WorkShiftModel", "WorkShift")
+                        .WithMany("Times")
+                        .HasForeignKey("WorkShiftId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.Navigation("Professional");
+
+                    b.Navigation("WorkShift");
                 });
 
             modelBuilder.Entity("WebApi8_Scheduling.Models.ClientModel", b =>
@@ -291,6 +321,11 @@ namespace WebApi8_Scheduling.Migrations
             modelBuilder.Entity("WebApi8_Scheduling.Models.ServiceModel", b =>
                 {
                     b.Navigation("Schedulings");
+                });
+
+            modelBuilder.Entity("WebApi8_Scheduling.Models.WorkShiftModel", b =>
+                {
+                    b.Navigation("Times");
                 });
 #pragma warning restore 612, 618
         }

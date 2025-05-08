@@ -6,8 +6,6 @@ namespace WebApi8_Scheduling.Models
     {
         public int Id { get; set; }
 
-        public int ProfessionalId { get; set; }
-
         public int DayWeek { get; set; }
 
         public TimeSpan StartTime { get; set; }
@@ -15,7 +13,11 @@ namespace WebApi8_Scheduling.Models
         public TimeSpan EndTime { get; set; }
 
         [JsonIgnore]
+        public int ProfessionalId { get; set; }
         public ProfessionalModel Professional { get; set; } = null!;
+        public int WorkShiftId { get; set; }
+        [JsonIgnore]
+        public WorkShiftModel WorkShift { get; set; }
     }
 
 }

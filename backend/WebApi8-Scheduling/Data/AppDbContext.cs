@@ -19,6 +19,7 @@ namespace WebApi8_Scheduling.Data
         public DbSet<ProfessionalModel> Professional { get; set; }
         public DbSet<EnterpriseModel> Enterprise { get; set; }
         public DbSet<AgendaBaseModel> AgendaBase { get; set; }
+        public DbSet<WorkShiftModel> WorkShift { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -89,6 +90,12 @@ namespace WebApi8_Scheduling.Data
                 .HasOne(a => a.Professional)
                 .WithMany(p => p.AgendasBase)
                 .HasForeignKey(a => a.ProfessionalId)
+                .OnDelete(DeleteBehavior.Restrict);
+            
+            modelBuilder.Entity<AgendaBaseModel>()
+                .HasOne(a => a.WorkShift)
+                .WithMany(p => p.Times)
+                .HasForeignKey(a => a.WorkShiftId)
                 .OnDelete(DeleteBehavior.Restrict);
 
 
