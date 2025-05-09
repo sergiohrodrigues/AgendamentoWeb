@@ -12,8 +12,8 @@ namespace WebApi8_Scheduling.Models
 
         public TimeSpan EndTime { get; set; }
 
-        [JsonIgnore]
         public int ProfessionalId { get; set; }
+        [JsonIgnore]
         public ProfessionalModel Professional { get; set; } = null!;
         public int WorkShiftId { get; set; }
         [JsonIgnore]

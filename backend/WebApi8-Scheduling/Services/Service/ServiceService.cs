@@ -20,17 +20,17 @@ namespace WebApi8_Scheduling.Services.Scheduling
 
             try
             {
-                var xEnterprise = _context.Enterprise.FirstOrDefaultAsync(p => p.Id == pService.EnterpriseId);
+                var xEnterprise = await _context.Enterprise.FirstOrDefaultAsync(p => p.Id == pService.EnterpriseId);
 
-                if (xEnterprise != null)
+                if (xEnterprise == null)
                 {
                     respost.Mensagem = "Enteprise not found";
                     return respost;
                 }
                 
-                var xProfessional = _context.Professional.FirstOrDefaultAsync(p => p.Id == pService.ProfessionalId);
+                var xProfessional = await _context.Professional.FirstOrDefaultAsync(p => p.Id == pService.ProfessionalId);
 
-                if (xProfessional != null)
+                if (xProfessional == null)
                 {
                     respost.Mensagem = "Professional not found";
                     return respost;
@@ -48,6 +48,7 @@ namespace WebApi8_Scheduling.Services.Scheduling
                 _context.Services.Add(xNewService);
                 _context.SaveChanges();
 
+                respost.Dados = xNewService;
                 respost.Mensagem = "Service created successfull!";
                 return respost;
 

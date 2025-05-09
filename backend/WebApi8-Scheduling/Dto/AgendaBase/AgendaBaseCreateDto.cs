@@ -9,5 +9,7 @@
         public TimeSpan StartTime { get; set; }
 
         public TimeSpan EndTime { get; set; }
+
+        public int WorkShiftId { get; set; }
     }
 }

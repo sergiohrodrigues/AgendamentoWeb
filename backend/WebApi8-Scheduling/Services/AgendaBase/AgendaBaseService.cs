@@ -39,7 +39,8 @@ namespace WebApi8_Scheduling.Services.AgendaBase
                         ProfessionalId = pProfessionalId,
                         DayWeek = dia,
                         StartTime = new TimeSpan(8, 0, 0),
-                        EndTime = new TimeSpan(12, 0, 0)
+                        EndTime = new TimeSpan(12, 0, 0),
+                        WorkShiftId = 1
                     });
 
                     // Turno tarde
@@ -48,7 +49,8 @@ namespace WebApi8_Scheduling.Services.AgendaBase
                         ProfessionalId = pProfessionalId,
                         DayWeek = dia,
                         StartTime = new TimeSpan(13, 0, 0),
-                        EndTime = new TimeSpan(18, 0, 0)
+                        EndTime = new TimeSpan(18, 0, 0),
+                        WorkShiftId = 2
                     });
                 }
 
@@ -88,6 +90,7 @@ namespace WebApi8_Scheduling.Services.AgendaBase
                     DayWeek = pAgendaBaseDto.DayWeek,
                     StartTime = pAgendaBaseDto.StartTime,
                     EndTime = pAgendaBaseDto.EndTime,
+                    WorkShiftId = pAgendaBaseDto.WorkShiftId,
                 };
 
                 _context.AgendaBase.Add(newAgendaBase);
@@ -131,6 +134,7 @@ namespace WebApi8_Scheduling.Services.AgendaBase
                 xAgendaBase.DayWeek = pAgendaBaseEditDto.DayWeek;
                 xAgendaBase.StartTime = pAgendaBaseEditDto.StartTime;
                 xAgendaBase.EndTime = pAgendaBaseEditDto.EndTime;
+                xAgendaBase.WorkShiftId = pAgendaBaseEditDto.WorkShiftId;
 
                 _context.AgendaBase.Update(xAgendaBase);
                 _context.SaveChanges();

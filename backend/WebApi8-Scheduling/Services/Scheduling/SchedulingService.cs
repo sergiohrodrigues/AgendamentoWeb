@@ -13,29 +13,13 @@ namespace WebApi8_Scheduling.Services.Scheduling
         {
             _context = context;
         }
-        public async Task<ResponseModel<SchedulingModel>> CreateSheduling(SchedulingCreateDto scheduling)
+        public async Task<ResponseModel<SchedulingModel>> CreateSheduling(SchedulingCreateDto schedulingCreateDto)
         {
             ResponseModel<SchedulingModel> respost = new ResponseModel<SchedulingModel>();
 
             try
             {
-                //var EnterpriseId = await _context.Enterprise.FirstOrDefaultAsync(a => a.Id == scheduling.EnterpriseId);
-
-                //if (EnterpriseId == null)
-                //{
-                //    respost.Mensagem = "User not found";
-                //    return respost;
-                //}
-
-                //var clientId = await _context.Clients.FirstOrDefaultAsync(clientBanco => clientBanco.Id == scheduling.ClientId);
-
-                //if (clientId == null)
-                //{
-                //    respost.Mensagem = "Client not found";
-                //    return respost;
-                //}
-
-                var serviceId = await _context.Services.FirstOrDefaultAsync(serviceBanco => serviceBanco.Id == scheduling.ServiceId);
+                var serviceId = await _context.Services.FirstOrDefaultAsync(serviceBanco => serviceBanco.Id == schedulingCreateDto.ServiceId);
 
                 if (serviceId == null)
                 {
@@ -43,13 +27,38 @@ namespace WebApi8_Scheduling.Services.Scheduling
                     return respost;
                 }
 
+                var enterprise = await _context.Enterprise.FirstOrDefaultAsync(enterpriseBanco => enterpriseBanco.Id == schedulingCreateDto.EnterpriseId);
+
+                if (enterprise == null)
+                {
+                    respost.Mensagem = "Enterprise not found";
+                    return respost;
+                }
+
+                var client = await _context.Clients.FirstOrDefaultAsync(clientBanco => clientBanco.Id == schedulingCreateDto.ClientId);
+
+                if (client == null)
+                {
+                    respost.Mensagem = "Client not found";
+                    return respost;
+                }
+                
+                var professional = await _context.Professional.FirstOrDefaultAsync(professionalBanco => professionalBanco.Id == schedulingCreateDto.ProfessionalId);
+
+                if (client == null)
+                {
+                    respost.Mensagem = "Professional not found";
+                    return respost;
+                }
+
                 var newScheduling = new SchedulingModel()
                 {
-                    DateHour = scheduling.DateHour,
-                    Observation = scheduling.Observation,
-                    //EnterpriseId = scheduling.EnterpriseId,
-                    //ClientId = scheduling.ClientId,
-                    ServiceId = scheduling.ServiceId,
+                    DateHour = schedulingCreateDto.DateHour,
+                    Observation = schedulingCreateDto.Observation,
+                    ServiceId = schedulingCreateDto.ServiceId,
+                    EnterpriseId = schedulingCreateDto.EnterpriseId,
+                    ClientId = schedulingCreateDto.ClientId,
+                    ProfessionalId = schedulingCreateDto.ProfessionalId
                 };
 
                 _context.Scheduling.Add(newScheduling);
@@ -108,25 +117,20 @@ namespace WebApi8_Scheduling.Services.Scheduling
 
             try
             {
-                //var enterprise = await _context.Enterprise.FirstOrDefaultAsync(a => a.Id == EnterpriseId);
+                var enterprise = await _context.Enterprise.FirstOrDefaultAsync(a => a.Id == EnterpriseId);
 
-                //if (enterprise == null)
-                //{
-                //    respost.Mensagem = "User not found";
-                //    return respost;
-                //}
+                if (enterprise == null)
+                {
+                    respost.Mensagem = "User not found";
+                    return respost;
+                }
 
-                //var schedulings = await _context.Scheduling
-                //    .Include(a => a.Enterprise)
-                //    .Include(a => a.Client)
-                //    .Include(a => a.Service)
-                //    .Where(a => a.EnterpriseId == EnterpriseId)
-                //    .ToListAsync();
+                var schedulings = await _context.Scheduling
+                    .Where(s => s.EnterpriseId == EnterpriseId)
+                    .ToListAsync();
 
-                //Console.WriteLine($"Total de registros encontrados: {schedulings.Count}");
-
-                //respost.Dados = schedulings;
-                //respost.Mensagem = "Get schedulings successfull!";
+                respost.Dados = schedulings;
+                respost.Mensagem = "Get schedulings successfull!";
                 return respost;
 
             }

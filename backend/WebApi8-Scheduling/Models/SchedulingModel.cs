@@ -8,14 +8,17 @@ namespace WebApi8_Scheduling.Models
         public DateTime DateHour { get; set; }
         public string Observation { get; set; }
 
-        //Relacionament
-        //[JsonIgnore]
-        //public int EnterpriseId { get; set; }
-        //public EnterpriseModel Enterprise { get; set; }
+        public int EnterpriseId { get; set; }
+        [JsonIgnore]
+        public EnterpriseModel Enterprise { get; set; }
 
-        //public int ClientId { get; set; }
-        //[JsonIgnore]
-        //public ClientModel Client { get; set; }
+        public int ClientId { get; set; }
+        [JsonIgnore]
+        public ClientModel Client { get; set; }
+        
+        public int ProfessionalId { get; set; }
+        [JsonIgnore]
+        public ProfessionalModel Professional{ get; set; }
 
         public int ServiceId { get; set; }
         [JsonIgnore]

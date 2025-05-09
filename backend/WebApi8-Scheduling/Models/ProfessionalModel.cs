@@ -16,10 +16,12 @@ namespace WebApi8_Scheduling.Models
 
         public int EnterpriseId { get; set; }
 
+        [JsonIgnore]
         public EnterpriseModel Enterprise { get; set; }
 
         [JsonIgnore]
         public ICollection<ServiceModel> Services { get; set; } = new List<ServiceModel>();
+
         [JsonIgnore]
         public ICollection<AgendaBaseModel> AgendasBase { get; set; } = new List<AgendaBaseModel>();
 
