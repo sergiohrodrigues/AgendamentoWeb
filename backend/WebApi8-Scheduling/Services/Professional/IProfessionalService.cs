@@ -7,5 +7,6 @@ namespace WebApi8_Scheduling.Services.Professional
     {
         Task<ResponseModel<ProfessionalModel>> CreateProfessional(ProfessionalCreateDto pProfessional);
         Task<ResponseModel<List<ProfessionalModel>>> GetAllProfessional(int enterpriseId);
+        Task<ResponseModel<List<string>>> GetSchedulesProfessional(int pDayWeek, int pProfessionalId);
     }
 }

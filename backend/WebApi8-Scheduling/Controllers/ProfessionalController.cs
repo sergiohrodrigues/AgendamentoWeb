@@ -29,5 +29,12 @@ namespace WebApi8_Scheduling.Controllers
             var newEnterprise = await _professionalInterface.CreateProfessional(pProfessional);
             return Ok(newEnterprise);
         }
+        
+        [HttpGet("schedules/{dayWeekId}/{professionalId}")]
+        public async Task<ActionResult<ResponseModel<string>>> GetSchedulesProfessional(int dayWeekId, int professionalId)
+        {
+            var schedules = await _professionalInterface.GetSchedulesProfessional(dayWeekId, professionalId);
+            return Ok(schedules);
+        }
     }
 }

@@ -27,3 +27,9 @@ obj/
 # Ignore node_modules e arquivos de build do frontend
 node_modules/
 dist/
+
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates

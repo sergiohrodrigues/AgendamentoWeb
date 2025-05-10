@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WebApi8_Scheduling.Dto.AgendaBase;
-using WebApi8_Scheduling.Dto.Client;
 using WebApi8_Scheduling.Models;
 using WebApi8_Scheduling.Services.AgendaBase;
-using WebApi8_Scheduling.Services.Client;
 
 namespace WebApi8_Scheduling.Controllers
 {

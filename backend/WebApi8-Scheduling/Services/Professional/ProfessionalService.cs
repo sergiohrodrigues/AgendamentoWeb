@@ -80,5 +80,54 @@ namespace WebApi8_Scheduling.Services.Professional
                 return respost;
             }
         }
+
+        public async Task<ResponseModel<List<string>>> GetSchedulesProfessional(int pDayWeek, int pProfessionalId)
+        {
+            ResponseModel<List<string>> respost = new ResponseModel<List<string>>();
+
+            try
+            {
+                var xSchdules =  _context.AgendaBase
+                    .Where(p => p.ProfessionalId == pProfessionalId && p.DayWeek == pDayWeek)
+                    .Select(p => new AgendaBaseModel()
+                    {
+                        StartTime = p.StartTime,
+                        EndTime = p.EndTime
+                    }).ToList();
+
+                if (xSchdules.Count == 0)
+                {
+                    respost.Mensagem = "Day week our professional not found!";
+                    return respost;
+                }
+                
+                var xResultado = new List<string>();
+                var intervalo = TimeSpan.FromHours(1);
+                
+                foreach (var item in xSchdules)
+                {
+                    var inicio = item.StartTime;
+                    var fim = item.EndTime;
+
+                    var totalHoras = (int)(fim - inicio).TotalHours;
+    
+                    for (int i = 0; i < totalHoras; i++)
+                    {
+                        var horaAtual = inicio.Add(TimeSpan.FromHours(i));
+                        xResultado.Add(horaAtual.ToString(@"hh\:mm"));
+                    }
+                }
+
+                respost.Dados = xResultado;
+                respost.Mensagem = "Schedules professional got successfully!";
+                return respost;
+            }
+            catch (Exception ex)
+            {
+                respost.Mensagem = ex.Message;
+                respost.Status = false;
+                return respost;
+            }
+        }
     }
 }
