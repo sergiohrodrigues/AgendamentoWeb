@@ -1,9 +1,29 @@
-<div *ngIf="dayWithTimes.length > 0">
-    <div *ngFor="let day of dayWithTimes">
-        <h3>{{ day.dayOfWeekName }} - {{ day.day }}</h3>
-        
-        <div style="display: flex; padding: 0.5rem; gap: 0.5rem; flex-wrap: wrap;">
-            <p-button *ngFor="let time of day.times" [label]="time"></p-button>
-        </div>
+<p-panel>
+    <div class="flex gap-4 items-center justify-center">
+        <p-image src="assets/logo.jpg" alt="Image" width="100" class="h-[100px]"/>
+        <h2 class="text-center">Dety Frediani Beleza e Estética</h2>
     </div>
-</div>
+</p-panel>
+
+<!-- <div class="card">
+    <p-carousel [value]="professionals?.dados" [numVisible]="3" [numScroll]="3" [circular]="false" [responsiveOptions]="responsiveOptions">
+        <ng-template let-professional #item>
+            <div class="border border-surface rounded-border m-2 p-4">
+                <div class="mb-4">
+                    <div class="relative mx-auto">
+                        <img src="https://primefaces.org/cdn/primeng/images/demo/product/{{ product.image }}" [alt]="product.name" class="w-full rounded-border" />
+                        <p-tag [value]="professionals." [severity]="getSeverity(product.inventoryStatus)" class="absolute" [ngStyle]="{ 'left.px': 5, 'top.px': 5 }" />
+                    </div>
+                </div>
+                <div class="mb-4 font-medium">{{ professionals?.dados.nome }}</div>
+                <div class="flex justify-between items-center">
+                    <div class="mt-0 font-semibold text-xl">{{ '$' + product.price }}</div>
+                    <span>
+                        <p-button icon="pi pi-heart" severity="secondary" [outlined]="true" />
+                        <p-button icon="pi pi-shopping-cart" styleClass="ml-2" />
+                    </span>
+                </div>
+            </div>
+        </ng-template>
+    </p-carousel>
+</div> -->

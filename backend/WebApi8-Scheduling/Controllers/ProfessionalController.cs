@@ -16,8 +16,15 @@ namespace WebApi8_Scheduling.Controllers
             _professionalInterface = schedulingInterface;
         }
 
+        [HttpGet("{enterpriseId}")]
+        public async Task<ActionResult<ResponseModel<List<ProfessionalModel>>>> GetAllProfessionals(int enterpriseId)
+        {
+            var newEnterprise = await _professionalInterface.GetAllProfessional(enterpriseId);
+            return Ok(newEnterprise);
+        }
+        
         [HttpPost]
-        public async Task<ActionResult<ResponseModel<SchedulingModel>>> CreateProfessional(ProfessionalCreateDto pProfessional)
+        public async Task<ActionResult<ResponseModel<ProfessionalModel>>> CreateProfessional(ProfessionalCreateDto pProfessional)
         {
             var newEnterprise = await _professionalInterface.CreateProfessional(pProfessional);
             return Ok(newEnterprise);

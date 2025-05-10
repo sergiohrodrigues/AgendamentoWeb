@@ -6,5 +6,6 @@ namespace WebApi8_Scheduling.Services.Professional
     public interface IProfessionalService
     {
         Task<ResponseModel<ProfessionalModel>> CreateProfessional(ProfessionalCreateDto pProfessional);
+        Task<ResponseModel<List<ProfessionalModel>>> GetAllProfessional(int enterpriseId);
     }
 }
