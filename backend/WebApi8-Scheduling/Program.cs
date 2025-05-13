@@ -35,6 +35,7 @@ builder.Services.AddScoped<IServiceInterface, ServiceService>();
 builder.Services.AddScoped<ITimeService, TimeService>();
 builder.Services.AddScoped<IProfessionalService, ProfessionalService>();
 builder.Services.AddScoped<IAgendaBaseService, AgendaBaseService>();
+builder.Services.AddScoped<IUserService, UserService>();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
 {

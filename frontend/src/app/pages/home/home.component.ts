@@ -23,10 +23,10 @@ export class HomeComponent implements OnInit {
     constructor(private professionalService: ProfessionalService) {}
 
     async ngOnInit(): Promise<void> {
-        this.professionals = await firstValueFrom(
-            this.professionalService.getAllProfessionals(1)
-        );
-        console.log(this.professionals.dados)
+        // this.professionals = await firstValueFrom(
+        //     this.professionalService.getAllProfessionals(1)
+        // );
+        // console.log(this.professionals.dados)
     }
 
     responsiveOptions: any[] | undefined;
