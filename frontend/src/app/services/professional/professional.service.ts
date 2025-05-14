@@ -18,7 +18,7 @@ export class ProfessionalService {
   constructor(private http: HttpClient) {}
   
   teste = 1;
-  getAllProfessionals(teste: number): Observable<ResponseComDados<Professional[]>> {
-    return this.http.get<ResponseComDados<Professional[]>>(`${this.apiUrl}/Professional/${teste}`);
+  getAllProfessionals(): Observable<ResponseComDados<Professional[]>> {
+    return this.http.get<ResponseComDados<Professional[]>>(`${this.apiUrl}/Professional/${this.teste}`);
   }
 }

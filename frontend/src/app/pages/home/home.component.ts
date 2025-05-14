@@ -6,13 +6,14 @@ import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { PanelModule } from 'primeng/panel';
 import { ImageModule } from 'primeng/image';
-import { CarouselModule } from 'primeng/carousel';
 import { ProfessionalService, ResponseComDados } from '../../services/professional/professional.service';
 import { Professional } from '../../interfaces/professional/professional';
+import { StepperModule } from 'primeng/stepper';
+import { AvatarModule } from 'primeng/avatar';
 
 @Component({
     selector: 'app-home',
-    imports: [CommonModule, ButtonModule, PanelModule, ImageModule, CarouselModule],
+    imports: [CommonModule, ButtonModule, PanelModule, ImageModule, StepperModule, AvatarModule],
     templateUrl: './home.component.html',
     styleUrl: './home.component.css'
 })
@@ -23,22 +24,6 @@ export class HomeComponent implements OnInit {
     constructor(private professionalService: ProfessionalService) {}
 
     async ngOnInit(): Promise<void> {
-        // this.professionals = await firstValueFrom(
-        //     this.professionalService.getAllProfessionals(1)
-        // );
-        // console.log(this.professionals.dados)
+        this.professionals = await firstValueFrom(this.professionalService.getAllProfessionals());
     }
-
-    responsiveOptions: any[] | undefined;
-
-    // getSeverity(status: string) {
-    //     switch (status) {
-    //         case 'INSTOCK':
-    //             return 'success';
-    //         case 'LOWSTOCK':
-    //             return 'warn';
-    //         case 'OUTOFSTOCK':
-    //             return 'danger';
-    //     }
-    // }
 }
