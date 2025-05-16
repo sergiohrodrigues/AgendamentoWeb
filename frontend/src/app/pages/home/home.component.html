@@ -11,26 +11,29 @@
             <p-step>Agendamento</p-step>
             <p-step-panel>
                 <ng-template #content let-activateCallback="activateCallback">
-                    <div class="flex flex-col h-80" style="padding: 0.3rem;">
+                    <div class="flex flex-col h-100" style="padding: 0.3rem;">
                         <div
-                            class="border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex flex-col justify-center items-center font-medium">
+                            class="p-4! border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex flex-col justify-start items-left font-medium">
                             <div>
                                 <h2>Selecione um profissional:</h2>
-                                <div class="flex">
+                                <div>
                                     <p-avatar *ngFor="let item of professionals?.dados"
                                         image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
                                         class="mr-2 flex flex-col-reverse" size="xlarge" shape="circle"
-                                        ariaLabel="Teste">
+                                        ariaLabel="Teste" (click)="buscarDiasDisponiveis()">
                                         <p class="font-bold" style="font-size: 0.8rem;">{{ item.nome}}</p>
                                     </p-avatar>
                                 </div>
                             </div>
-                            <!-- <div>
-                                <h2>Selecione uma data:</h2>
-                                <div class="flex">
-                                    <div *ngFor="let item of professionals?.dados" class="">{{ item.nome }}</div>
+                            <div class="mt-8!" *ngIf="dayWithTimes.length > 0">
+                                <h2>Selecione um dia:</h2>
+                                <div class="card flex justify-center">
+                                    <p-datepicker [(ngModel)]="date" view="month" dateFormat="mm/yy" [readonlyInput]="true" />
                                 </div>
-                            </div> -->
+                                <div class="flex flex-wrap gap-2">
+                                    <p-button *ngFor="let item of dayWithTimes" [label]="item.day.toString()" />
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="py-6">
@@ -44,7 +47,7 @@
             <p-step>Cadastro rápido</p-step>
             <p-step-panel>
                 <ng-template #content let-activateCallback="activateCallback">
-                    <div class="flex flex-col h-90">
+                    <div class="flex flex-col h-100">
                         <div
                             class="border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium">
                             Content II
@@ -63,7 +66,7 @@
             <p-step>Concluir</p-step>
             <p-step-panel>
                 <ng-template #content let-activateCallback="activateCallback">
-                    <div class="flex flex-col h-90">
+                    <div class="flex flex-col h-100">
                         <div
                             class="border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium">
                             Content III

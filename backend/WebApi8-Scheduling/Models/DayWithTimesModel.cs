@@ -4,20 +4,17 @@ namespace WebApi8_Scheduling.Models
 {
     public class DayWithTimesModel
     {
-        public DateTime Day { get; set; }
+        public int Day { get; set; }
+        public int Month { get; set; }
         public string DayOfWeekName { get; set; }
-        public List<string> Times { get; set; }
+        public int DayId { get; set; }
 
-        public DayWithTimesModel(DateTime day, int timeStart = 8, int timeEnd = 20)
+        public DayWithTimesModel(DateTime day)
         {
-            Day = day.Date;
+            Day = day.Date.Day;
+            Month = day.Date.Month;
             DayOfWeekName = GetPortugueseDayOfWeek(day);
-            Times = new List<string>();
-
-            for (int hora = timeStart; hora <= timeEnd; hora++)
-            {
-                Times.Add(new TimeSpan(hora, 0, 0).ToString(@"hh\:mm"));
-            }
+            DayId = (int)day.DayOfWeek;
         }
 
         private string GetPortugueseDayOfWeek(DateTime date)
