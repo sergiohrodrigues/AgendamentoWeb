@@ -41,4 +41,31 @@ public class UserService : IUserService
         }
 
     }
+
+    public async Task<ResponseModel<UserModel>> Login(LoginDto pUser)
+    {
+        ResponseModel<UserModel> respost = new ResponseModel<UserModel>();
+        
+        try
+        {
+            var user = _context.User.FirstOrDefault(p => p.Email == pUser.Email && p.Password == pUser.Password);
+
+            if (user == null)
+            {
+                respost.Mensagem = "User not found, email ou senha invalidos";
+                return respost;
+            }
+
+            respost.Dados = user;
+            respost.Mensagem = "User logged successfully.";
+
+            return respost;
+        }
+        catch (Exception ex)
+        {
+            respost.Mensagem = ex.Message;
+            respost.Status = false;
+            return respost;
+        }
+    }
 }

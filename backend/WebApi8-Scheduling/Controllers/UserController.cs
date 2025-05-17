@@ -23,4 +23,11 @@ public class UserController : ControllerBase
         var user = await _userService.CreateUser(pUser);
         return Ok(user);
     }
+    
+    [HttpPost("login")]
+    public async Task<ActionResult<ResponseModel<UserModel>>> Login(LoginDto pUser)
+    {
+        var user = await _userService.Login(pUser);
+        return Ok(user);
+    }
 }
