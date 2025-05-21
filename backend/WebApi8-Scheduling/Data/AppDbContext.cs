@@ -18,9 +18,10 @@ namespace WebApi8_Scheduling.Data
         public DbSet<SchedulingModel> Scheduling { get; set; }
         public DbSet<ProfessionalModel> Professional { get; set; }
         public DbSet<EnterpriseModel> Enterprise { get; set; }
-        public DbSet<AgendaBaseModel> AgendaBase { get; set; }
+        public DbSet<AgendaDisponivel> AgendaDisponivel { get; set; }
         public DbSet<WorkShiftModel> WorkShift { get; set; }
         public DbSet<UserModel> User { get; set; }
+        public DbSet<AgendaIndisponivel> AgendaIndisponivel { get; set; }
 
 
         //protected override void OnModelCreating(ModelBuilder modelBuilder)

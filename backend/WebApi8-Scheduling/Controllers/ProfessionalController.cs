@@ -36,5 +36,12 @@ namespace WebApi8_Scheduling.Controllers
             var schedules = await _professionalInterface.GetSchedulesProfessional(dayWeekId, professionalId);
             return Ok(schedules);
         }
+        
+        [HttpGet("{professionalId}/agenda-disponivel")]
+        public async Task<ActionResult<ResponseModel<List<DateTime>>>> BuscarHorariosDisponiveis(int profissionalId, DateTime dataInicial, DateTime dataFinal)
+        {
+            var horarios = await _professionalInterface.BuscarHorariosDisponiveis(profissionalId, dataInicial, dataFinal);
+            return Ok(horarios);
+        }
     }
 }

@@ -6,18 +6,18 @@ using WebApi8_Scheduling.Models;
 
 namespace WebApi8_Scheduling.Services.AgendaBase
 {
-    public class AgendaBaseService : IAgendaBaseService
+    public class AgendaDisponivelService : IAgendaDisponivelService
     {
         private readonly AppDbContext _context;
 
-        public AgendaBaseService(AppDbContext context)
+        public AgendaDisponivelService(AppDbContext context)
         {
             _context = context;
         }
 
-        public async Task<ResponseModel<List<AgendaBaseModel>>> AddDefaultSchedules(int pProfessionalId)
+        public async Task<ResponseModel<List<AgendaDisponivel>>> AddDefaultSchedules(int pProfessionalId)
         {
-            ResponseModel<List<AgendaBaseModel>> respost = new ResponseModel<List<AgendaBaseModel>>();
+            ResponseModel<List<AgendaDisponivel>> respost = new ResponseModel<List<AgendaDisponivel>>();
 
             try
             {
@@ -29,32 +29,35 @@ namespace WebApi8_Scheduling.Services.AgendaBase
                     return respost;
                 }
 
-                var agendas = new List<AgendaBaseModel>();
+                var agendas = new List<AgendaDisponivel>();
 
                 for (int dia = 1; dia <= 6; dia++)
                 {
+                    var hoje = DateTime.UtcNow.Date;
+                    var dataAgenda = hoje.AddDays((7 + dia - (int)hoje.DayOfWeek) % 7);
+                    
                     // Turno manhã
-                    agendas.Add(new AgendaBaseModel
+                    agendas.Add(new AgendaDisponivel
                     {
-                        ProfessionalId = pProfessionalId,
-                        DayWeek = dia,
-                        StartTime = new TimeSpan(8, 0, 0),
-                        EndTime = new TimeSpan(12, 0, 0),
-                        WorkShiftId = 1
+                        ProfissionalId = pProfessionalId,
+                        DiaDaSemana = dia,
+                        HorarioInicio = dataAgenda.AddHours(8), // 08:00 UTC
+                        HorarioFim = dataAgenda.AddHours(12),  // 12:00 UTC
+                        TurnoTrabalhoId = 1
                     });
 
                     // Turno tarde
-                    agendas.Add(new AgendaBaseModel
+                    agendas.Add(new AgendaDisponivel
                     {
-                        ProfessionalId = pProfessionalId,
-                        DayWeek = dia,
-                        StartTime = new TimeSpan(13, 0, 0),
-                        EndTime = new TimeSpan(18, 0, 0),
-                        WorkShiftId = 2
+                        ProfissionalId = pProfessionalId,
+                        DiaDaSemana = dia,
+                        HorarioInicio = dataAgenda.AddHours(13), // 13:00 UTC
+                        HorarioFim = dataAgenda.AddHours(18),  // 18:00 UTC
+                        TurnoTrabalhoId = 2
                     });
                 }
 
-                _context.AgendaBase.AddRange(agendas);
+                _context.AgendaDisponivel.AddRange(agendas);
                 await _context.SaveChangesAsync();
 
                 respost.Dados = agendas;
@@ -70,13 +73,13 @@ namespace WebApi8_Scheduling.Services.AgendaBase
             }
         }
 
-        public async Task<ResponseModel<AgendaBaseModel>> CreateAgendaBase(AgendaBaseCreateDto pAgendaBaseDto)
+        public async Task<ResponseModel<AgendaDisponivel>> CreateAgendaBase(AgendaBaseCreateDto pAgendaBaseDto)
         {
-            ResponseModel<AgendaBaseModel> respost = new ResponseModel<AgendaBaseModel>();
+            ResponseModel<AgendaDisponivel> respost = new ResponseModel<AgendaDisponivel>();
 
             try
             {
-                var professional = await _context.Professional.FirstOrDefaultAsync(a => a.Id == pAgendaBaseDto.ProfessionalId);
+                var professional = await _context.Professional.FirstOrDefaultAsync(a => a.Id == pAgendaBaseDto.ProfissionalId);
 
                 if (professional == null)
                 {
@@ -84,16 +87,16 @@ namespace WebApi8_Scheduling.Services.AgendaBase
                     return respost;
                 }
 
-                var newAgendaBase= new AgendaBaseModel()
+                var newAgendaBase= new AgendaDisponivel()
                 {
-                    ProfessionalId = pAgendaBaseDto.ProfessionalId,
-                    DayWeek = pAgendaBaseDto.DayWeek,
-                    StartTime = pAgendaBaseDto.StartTime,
-                    EndTime = pAgendaBaseDto.EndTime,
-                    WorkShiftId = pAgendaBaseDto.WorkShiftId,
+                    ProfissionalId = pAgendaBaseDto.ProfissionalId,
+                    DiaDaSemana = pAgendaBaseDto.DiaSemana,
+                    HorarioInicio = pAgendaBaseDto.HorarioInicio,
+                    HorarioFim = pAgendaBaseDto.HorarioFim,
+                    TurnoTrabalhoId = pAgendaBaseDto.TurnoTrabalhoId,
                 };
 
-                _context.AgendaBase.Add(newAgendaBase);
+                _context.AgendaDisponivel.Add(newAgendaBase);
                 _context.SaveChanges();
 
                 respost.Dados = newAgendaBase;
@@ -109,9 +112,9 @@ namespace WebApi8_Scheduling.Services.AgendaBase
             }
         }
 
-        public async Task<ResponseModel<AgendaBaseModel>> EditAgendaBase(int pProfessionalId, AgendaBaseEditDto pAgendaBaseEditDto)
+        public async Task<ResponseModel<AgendaDisponivel>> EditAgendaBase(int pProfessionalId, AgendaBaseEditDto pAgendaBaseEditDto)
         {
-            ResponseModel<AgendaBaseModel> respost = new ResponseModel<AgendaBaseModel>();
+            ResponseModel<AgendaDisponivel> respost = new ResponseModel<AgendaDisponivel>();
 
             try
             {
@@ -123,7 +126,7 @@ namespace WebApi8_Scheduling.Services.AgendaBase
                     return respost;
                 }
 
-                var xAgendaBase = await _context.AgendaBase.FirstOrDefaultAsync(p => p.ProfessionalId == pProfessionalId && p.DayWeek == pAgendaBaseEditDto.DayWeek);
+                var xAgendaBase = await _context.AgendaDisponivel.FirstOrDefaultAsync(p => p.ProfissionalId == pProfessionalId && p.DiaDaSemana == pAgendaBaseEditDto.DiaSemana);
 
                 if (xAgendaBase == null)
                 {
@@ -131,12 +134,12 @@ namespace WebApi8_Scheduling.Services.AgendaBase
                     return respost;
                 }
 
-                xAgendaBase.DayWeek = pAgendaBaseEditDto.DayWeek;
-                xAgendaBase.StartTime = pAgendaBaseEditDto.StartTime;
-                xAgendaBase.EndTime = pAgendaBaseEditDto.EndTime;
-                xAgendaBase.WorkShiftId = pAgendaBaseEditDto.WorkShiftId;
+                xAgendaBase.DiaDaSemana = pAgendaBaseEditDto.DiaSemana;
+                xAgendaBase.HorarioInicio = pAgendaBaseEditDto.HorarioInicio;
+                xAgendaBase.HorarioFim = pAgendaBaseEditDto.HorarioFim;
+                xAgendaBase.TurnoTrabalhoId = pAgendaBaseEditDto.TurnoTrabalhoId;
 
-                _context.AgendaBase.Update(xAgendaBase);
+                _context.AgendaDisponivel.Update(xAgendaBase);
                 _context.SaveChanges();
 
                 respost.Dados = xAgendaBase;

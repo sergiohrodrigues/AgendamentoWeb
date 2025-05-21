@@ -16,8 +16,7 @@ export class DayWithTimesService {
 
   constructor(private http: HttpClient) {}
   
-  teste = 1;
-  getDayWithTimes(): Observable<DayWithTimes[]> {
-    return this.http.get<DayWithTimes[]>(`${this.apiUrl}/DayWithTimes`);
+  getDayWithTimes(profissionalId: number): Observable<DayWithTimes[]> {
+    return this.http.get<DayWithTimes[]>(`${this.apiUrl}/DayWithTimes/${profissionalId}`);
   }
 }

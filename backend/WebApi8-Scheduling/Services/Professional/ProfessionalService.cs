@@ -87,12 +87,12 @@ namespace WebApi8_Scheduling.Services.Professional
 
             try
             {
-                var xSchdules =  _context.AgendaBase
-                    .Where(p => p.ProfessionalId == pProfessionalId && p.DayWeek == pDayWeek)
-                    .Select(p => new AgendaBaseModel()
+                var xSchdules =  _context.AgendaDisponivel
+                    .Where(p => p.ProfissionalId == pProfessionalId && p.DiaDaSemana == pDayWeek)
+                    .Select(p => new AgendaDisponivel()
                     {
-                        StartTime = p.StartTime,
-                        EndTime = p.EndTime
+                        HorarioInicio = p.HorarioInicio,
+                        HorarioFim = p.HorarioFim
                     }).ToList();
 
                 if (xSchdules.Count == 0)
@@ -106,8 +106,8 @@ namespace WebApi8_Scheduling.Services.Professional
                 
                 foreach (var item in xSchdules)
                 {
-                    var inicio = item.StartTime;
-                    var fim = item.EndTime;
+                    var inicio = item.HorarioInicio;
+                    var fim = item.HorarioFim;
 
                     var totalHoras = (int)(fim - inicio).TotalHours;
     
@@ -128,6 +128,59 @@ namespace WebApi8_Scheduling.Services.Professional
                 respost.Status = false;
                 return respost;
             }
+        }
+
+        public async Task<ResponseModel<List<DateTime>>> BuscarHorariosDisponiveis(int profissionalId, DateTime dataInicial, DateTime dataFinal)
+        {
+            ResponseModel<List<DateTime>> respost = new ResponseModel<List<DateTime>>();
+
+            try
+            {
+                var disponiblidades = _context.AgendaDisponivel
+                    .Where(d => d.ProfissionalId == profissionalId)
+                    .ToList();
+
+                var indisponibilidades = _context.AgendaIndisponivel
+                    .Where(i => i.ProfissionalId == profissionalId)
+                    .Select(i => i.Data).ToHashSet();
+
+                var agendamentos = _context.Scheduling
+                    .Where(a => a.ProfessionalId == profissionalId && a.DateHour >= dataInicial &&
+                                a.DateHour <= dataFinal)
+                    .Select(a => a.DateHour)
+                    .ToHashSet();
+
+                var horariosDisponiveis = new List<DateTime>();
+
+                for (var data = dataInicial.Date; data <= dataFinal.Date; data = data.AddDays(1))
+                {
+                    if (indisponibilidades.Contains(data)) continue;
+
+                    var diaSemana = data.Day;
+
+                    foreach (var disp in disponiblidades.Where(d => d.DiaDaSemana == diaSemana))
+                    {
+                        for (var hora = disp.HorarioInicio; hora < disp.HorarioFim; hora += TimeSpan.FromMinutes(30))
+                        {
+                            // var horario = data + hora;
+                            // if (!agendamentos.Contains(horario))
+                            //     horariosDisponiveis.Add(horario);
+                        }
+                    }
+                }
+
+                respost.Dados = horariosDisponiveis;
+                respost.Mensagem = "Horarios disponiveis do profissional obtidos com sucesso!";
+                return respost;
+            }
+            catch (Exception ex)
+            {
+                respost.Mensagem = ex.Message;
+                respost.Status = false;
+                return respost;
+            }
+
+            
         }
     }
 }

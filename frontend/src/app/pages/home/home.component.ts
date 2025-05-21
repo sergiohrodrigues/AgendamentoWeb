@@ -22,23 +22,28 @@ import { FormsModule } from '@angular/forms';
 export class HomeComponent implements OnInit {
     dayWithTimes: DayWithTimes[] = [];
     professionals: ResponseComDados<Professional[]> | undefined;
-    date: Date[] | undefined;
+    date: Date | undefined;
+    month: number | undefined;
+    year: number | undefined;
 
     constructor(private professionalService: ProfessionalService, private dayWithTimesService: DayWithTimesService) {}
 
     async ngOnInit(): Promise<void> {
         this.professionals = await firstValueFrom(this.professionalService.getAllProfessionals());
+
+        this.month = new Date().getMonth()+1;
+        this.year = new Date().getFullYear();
+
+        const teste = [this.converterParaDataCompleta(1, this.month, this.year)];
+        this.date = teste[0];
     }
 
-    async buscarDiasDisponiveis() {
-        const month = new Date().getMonth()+1;
-        const year = new Date().getFullYear();
-        this.date = [new Date(year, month - 1, 1)];
+    converterParaDataCompleta(dia: number, mes: number, ano: number): Date {
+        return new Date(ano, mes - 1, dia);
+    }
 
-        console.log(this.date)
-        
-        const response = await firstValueFrom(this.dayWithTimesService.getDayWithTimes());
-        this.dayWithTimes = response.filter(item => item.month === month);
-        console.log(this.dayWithTimes)
+    async buscarDiasDisponiveis() {        
+        const response = await firstValueFrom(this.dayWithTimesService.getDayWithTimes(1));
+        this.dayWithTimes = response.filter(item => item.month === this.month);
     }
 }

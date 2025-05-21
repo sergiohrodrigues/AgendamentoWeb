@@ -2,12 +2,12 @@
 {
     public class AgendaBaseEditDto
     {
-        public int DayWeek { get; set; }
 
-        public TimeSpan StartTime { get; set; }
+        public int DiaSemana { get; set; }
 
-        public TimeSpan EndTime { get; set; }
+        public DateTime HorarioInicio { get; set; }
+        public DateTime HorarioFim { get; set; }
 
-        public int WorkShiftId { get; set; }
+        public int TurnoTrabalhoId { get; set; }
     }
 }

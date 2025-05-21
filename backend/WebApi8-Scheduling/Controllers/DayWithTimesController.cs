@@ -15,10 +15,11 @@ namespace WebApi8_Scheduling.Controllers
             _timeService = timeService;
         }
 
-        [HttpGet]
-        public IActionResult GetTimesToYear()
+        [HttpGet("{profissionalId}")]
+        
+        public IActionResult GetTimesToYear(int profissionalId)
         {
-            var resultado = _timeService.GenerateSchedulesOfTheYear();
+            var resultado = _timeService.GenerateSchedulesOfTheYear(profissionalId);
             return Ok(resultado);
         }
 

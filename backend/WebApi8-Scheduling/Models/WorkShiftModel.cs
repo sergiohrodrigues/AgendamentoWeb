@@ -5,6 +5,6 @@
         public int Id { get; set; }
         public string Nome { get; set; } = string.Empty;
 
-        public ICollection<AgendaBaseModel>? Times { get; set; }
+        public ICollection<AgendaDisponivel>? Times { get; set; }
     }
 }

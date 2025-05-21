@@ -9,31 +9,31 @@ namespace WebApi8_Scheduling.Controllers
     [ApiController]
     public class AgendaBaseController : ControllerBase
     {
-        private readonly IAgendaBaseService _agendaBaseInterface;
+        private readonly IAgendaDisponivelService _agendaDisponivelInterface;
 
-        public AgendaBaseController(IAgendaBaseService agendaBaseService)
+        public AgendaBaseController(IAgendaDisponivelService agendaDisponivelService)
         {
-            _agendaBaseInterface = agendaBaseService;
+            _agendaDisponivelInterface = agendaDisponivelService;
         }
 
         [HttpPost]
-        public async Task<ActionResult<ResponseModel<AgendaBaseModel>>> CreateAgendaBase(AgendaBaseCreateDto pAgendaBase)
+        public async Task<ActionResult<ResponseModel<AgendaDisponivel>>> CreateAgendaBase(AgendaBaseCreateDto pAgendaBase)
         {
-            var agendaBase = await _agendaBaseInterface.CreateAgendaBase(pAgendaBase);
+            var agendaBase = await _agendaDisponivelInterface.CreateAgendaBase(pAgendaBase);
             return Ok(agendaBase);
         }
         
         [HttpPost("agenda-default")]
-        public async Task<ActionResult<ResponseModel<AgendaBaseModel>>> AddDefaultAgenda(int pProfessionalId)
+        public async Task<ActionResult<ResponseModel<AgendaDisponivel>>> AddDefaultAgenda(int pProfessionalId)
         {
-            var agendaBase = await _agendaBaseInterface.AddDefaultSchedules(pProfessionalId);
+            var agendaBase = await _agendaDisponivelInterface.AddDefaultSchedules(pProfessionalId);
             return Ok(agendaBase);
         }
         
         [HttpPut("{professionalId}")]
-        public async Task<ActionResult<ResponseModel<AgendaBaseModel>>> EditAgendaBase(int professionalId, AgendaBaseEditDto agendaBaseEditDto)
+        public async Task<ActionResult<ResponseModel<AgendaDisponivel>>> EditAgendaBase(int professionalId, AgendaBaseEditDto agendaBaseEditDto)
         {
-            var agendaBase = await _agendaBaseInterface.EditAgendaBase(professionalId, agendaBaseEditDto);
+            var agendaBase = await _agendaDisponivelInterface.EditAgendaBase(professionalId, agendaBaseEditDto);
             return Ok(agendaBase);
         }
     }

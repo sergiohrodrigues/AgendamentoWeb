@@ -1,23 +1,22 @@
-﻿using System.Security.Cryptography;
-
-namespace WebApi8_Scheduling.Models
+﻿namespace WebApi8_Scheduling.Models
 {
-    public class DayWithTimesModel
+    public class DiaEHorariosModel
     {
         public int Day { get; set; }
         public int Month { get; set; }
         public string DayOfWeekName { get; set; }
         public int DayId { get; set; }
+        public List<string> Horarios { get; set; }
 
-        public DayWithTimesModel(DateTime day)
+        public DiaEHorariosModel(DateTime day)
         {
             Day = day.Date.Day;
             Month = day.Date.Month;
-            DayOfWeekName = GetPortugueseDayOfWeek(day);
+            DayOfWeekName = BuscarDiaDaSemanaEmPortugues(day);
             DayId = (int)day.DayOfWeek;
         }
 
-        private string GetPortugueseDayOfWeek(DateTime date)
+        private string BuscarDiaDaSemanaEmPortugues(DateTime date)
         {
             var dayOfWeek = date.ToString("dddd", new System.Globalization.CultureInfo("pt-BR"));
             return char.ToUpper(dayOfWeek[0]) + dayOfWeek.Substring(1);

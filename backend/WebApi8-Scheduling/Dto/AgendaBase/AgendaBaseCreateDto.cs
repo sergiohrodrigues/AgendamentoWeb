@@ -2,14 +2,13 @@
 {
     public class AgendaBaseCreateDto
     {
-        public int ProfessionalId { get; set; }
+        public int ProfissionalId { get; set; }
 
-        public int DayWeek { get; set; }
+        public int DiaSemana { get; set; }
 
-        public TimeSpan StartTime { get; set; }
+        public DateTime HorarioInicio { get; set; }
+        public DateTime HorarioFim { get; set; }
 
-        public TimeSpan EndTime { get; set; }
-
-        public int WorkShiftId { get; set; }
+        public int TurnoTrabalhoId { get; set; }
     }
 }
