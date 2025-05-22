@@ -25,13 +25,13 @@
                                     </p-avatar>
                                 </div>
                             </div>
-                            <div class="mt-8!" *ngIf="dayWithTimes.length > 0">
+                            <div class="mt-8!" *ngIf="dayWithTimesFiltrados.length > 0">
                                 <h2>Selecione um dia:</h2>
                                 <div class="card flex justify-center">
-                                    <p-datepicker [(ngModel)]="date" view="month" dateFormat="mm/yy" [readonlyInput]="true" />
+                                    <p-datepicker [(ngModel)]="date" (onSelect)="mudarMes()" view="month" dateFormat="mm/yy" [readonlyInput]="true" />
                                 </div>
                                 <div class="flex flex-wrap gap-2">
-                                    <p-button *ngFor="let item of dayWithTimes" [label]="item.day.toString()" />
+                                    <p-button *ngFor="let item of dayWithTimesFiltrados" [label]="item.day.toString()" />
                                 </div>
                             </div>
                         </div>
