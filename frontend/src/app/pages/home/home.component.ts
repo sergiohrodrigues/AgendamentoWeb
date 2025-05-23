@@ -26,6 +26,11 @@ export class HomeComponent implements OnInit {
     date: Date | undefined;
     month: number = 0;
     year: number = 2025;
+    day: number |undefined;
+    horariosDoDiaSelecionado: string[] = [];
+    horario: string | undefined;
+    profissionalSelecionadoId: number | null = null;
+
 
     constructor(private professionalService: ProfessionalService, private dayWithTimesService: DayWithTimesService) {}
 
@@ -37,25 +42,56 @@ export class HomeComponent implements OnInit {
 
         const teste = [this.converterParaDataCompleta(1, this.month)];
         this.date = teste[0];
+
+        console.log(this.horario)
     }
 
-    converterParaDataCompleta(dia: number, mes: number): Date {
-        return new Date(this.year, mes - 1, dia);
+    converterParaDataCompleta(pDia: number, pMes: number): Date {
+        return new Date(this.year, pMes - 1, pDia);
     }
 
     mudarMes() {
         if (this.date) {
             const mesId = this.date.getMonth() + 1;
+            this.month = mesId;
             this.exibirHorarios(mesId);
           }
     }
 
-    exibirHorarios(month: number){
-        this.dayWithTimesFiltrados = this.dayWithTimes.filter(item => item.month === month);
+    exibirHorarios(pMonth: number){
+        this.dayWithTimesFiltrados = this.dayWithTimes.filter(item => item.month === pMonth);
     }
 
-    async buscarDiasDisponiveis() {        
-        const response = await firstValueFrom(this.dayWithTimesService.getDayWithTimes(1));
+    diaSelecionado(pDay: number) {
+      this.day = pDay;
+      const itemSelecionado = this.dayWithTimesFiltrados.find(item => item.day === pDay);
+      this.horariosDoDiaSelecionado = itemSelecionado ? itemSelecionado.horarios : [];
+    }
+
+    selecionarHorario(pHorario: string){
+        console.log(pHorario)
+        this.horario = pHorario
+        console.log(this.horario)
+    }
+
+    resetar(){
+        this.day = undefined
+        this.horario = undefined
+    }
+
+    voltar() {
+        this.day = undefined
+        this.horario = undefined
+    }
+
+    async buscarDiasDisponiveis(pProfissionalId: number) {
+        this.resetar()
+        console.log(this.profissionalSelecionadoId)
+        this.profissionalSelecionadoId = pProfissionalId;
+        console.log(this.profissionalSelecionadoId)
+        const response = await firstValueFrom(this.dayWithTimesService.getDayWithTimes(pProfissionalId));
+
+        console.log(response)
         this.dayWithTimes = response;
         this.exibirHorarios(this.month);
     }

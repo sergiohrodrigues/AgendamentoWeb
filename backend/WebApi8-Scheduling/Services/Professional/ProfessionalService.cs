@@ -67,6 +67,7 @@ namespace WebApi8_Scheduling.Services.Professional
 
                 var professionals = await _context.Professional
                     .Where(s => s.EnterpriseId == enterpriseId)
+                    .Where(p => p.Ativo == true)
                     .ToListAsync();
 
                 respost.Dados = professionals;

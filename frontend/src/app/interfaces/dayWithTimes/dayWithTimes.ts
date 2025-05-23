@@ -3,4 +3,5 @@ export interface DayWithTimes {
     month: number;
     dayOfWeekName: string;
     dayId: number;
+    horarios: string[]
   }
