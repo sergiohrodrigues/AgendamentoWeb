@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace WebApi8_Scheduling.Models
 {
-    public class EnterpriseModel
+    public class EmpresaModel
     {
         public int Id { get; set; }
 
@@ -26,11 +26,9 @@ namespace WebApi8_Scheduling.Models
         public bool Ativo { get; set; } = true;
 
         [JsonIgnore]
-        public ICollection<ProfessionalModel> Professionals { get; set; } = new List<ProfessionalModel>();
+        public ICollection<ProfissionalModel> Professionals { get; set; } = new List<ProfissionalModel>();
         [JsonIgnore]
-        public ICollection<ServiceModel> Services { get; set; } = new List<ServiceModel>();
-        [JsonIgnore]
-        public ICollection<ClientModel> Clients { get; set; } = new List<ClientModel>();
+        public ICollection<ServicoModel> Services { get; set; } = new List<ServicoModel>();
 
     }
 }

@@ -6,20 +6,20 @@ using WebApi8_Scheduling.Models;
 
 namespace WebApi8_Scheduling.Services.Scheduling
 {
-    public class SchedulingService : ISchedulingInterface
+    public class AgendamentoService : IAgendamentoInterface
     {
         private readonly AppDbContext _context;
-        public SchedulingService(AppDbContext context)
+        public AgendamentoService(AppDbContext context)
         {
             _context = context;
         }
-        public async Task<ResponseModel<SchedulingModel>> CreateSheduling(SchedulingCreateDto schedulingCreateDto)
+        public async Task<ResponseModel<AgendamentoModel>> CreateSheduling(SchedulingCreateDto schedulingCreateDto)
         {
-            ResponseModel<SchedulingModel> respost = new ResponseModel<SchedulingModel>();
+            ResponseModel<AgendamentoModel> respost = new ResponseModel<AgendamentoModel>();
 
             try
             {
-                var serviceId = await _context.Services.FirstOrDefaultAsync(serviceBanco => serviceBanco.Id == schedulingCreateDto.ServiceId);
+                var serviceId = await _context.Servico.FirstOrDefaultAsync(serviceBanco => serviceBanco.Id == schedulingCreateDto.ServicoId);
 
                 if (serviceId == null)
                 {
@@ -27,7 +27,7 @@ namespace WebApi8_Scheduling.Services.Scheduling
                     return respost;
                 }
 
-                var enterprise = await _context.Enterprise.FirstOrDefaultAsync(enterpriseBanco => enterpriseBanco.Id == schedulingCreateDto.EnterpriseId);
+                var enterprise = await _context.Empresa.FirstOrDefaultAsync(enterpriseBanco => enterpriseBanco.Id == schedulingCreateDto.EmpresaId);
 
                 if (enterprise == null)
                 {
@@ -35,7 +35,7 @@ namespace WebApi8_Scheduling.Services.Scheduling
                     return respost;
                 }
 
-                var client = await _context.Clients.FirstOrDefaultAsync(clientBanco => clientBanco.Id == schedulingCreateDto.ClientId);
+                var client = await _context.Cliente.FirstOrDefaultAsync(clientBanco => clientBanco.Id == schedulingCreateDto.ClienteId);
 
                 if (client == null)
                 {
@@ -43,7 +43,7 @@ namespace WebApi8_Scheduling.Services.Scheduling
                     return respost;
                 }
                 
-                var professional = await _context.Professional.FirstOrDefaultAsync(professionalBanco => professionalBanco.Id == schedulingCreateDto.ProfessionalId);
+                var professional = await _context.Profissional.FirstOrDefaultAsync(professionalBanco => professionalBanco.Id == schedulingCreateDto.ProfissionalId);
 
                 if (client == null)
                 {
@@ -51,17 +51,17 @@ namespace WebApi8_Scheduling.Services.Scheduling
                     return respost;
                 }
 
-                var newScheduling = new SchedulingModel()
+                var newScheduling = new AgendamentoModel()
                 {
-                    DateHour = schedulingCreateDto.DateHour,
-                    Observation = schedulingCreateDto.Observation,
-                    ServiceId = schedulingCreateDto.ServiceId,
-                    EnterpriseId = schedulingCreateDto.EnterpriseId,
-                    ClientId = schedulingCreateDto.ClientId,
-                    ProfessionalId = schedulingCreateDto.ProfessionalId
+                    Data = schedulingCreateDto.Data,
+                    Observacao = schedulingCreateDto.Observacao,
+                    ServicoId = schedulingCreateDto.ServicoId,
+                    EmpresaId = schedulingCreateDto.EmpresaId,
+                    ClienteId = schedulingCreateDto.ClienteId,
+                    ProfissionalId = schedulingCreateDto.ProfissionalId
                 };
 
-                _context.Scheduling.Add(newScheduling);
+                _context.Agendamento.Add(newScheduling);
                 _context.SaveChanges();
 
                 respost.Dados = newScheduling;
@@ -78,14 +78,14 @@ namespace WebApi8_Scheduling.Services.Scheduling
             }
         }
 
-        public async Task<ResponseModel<SchedulingModel>> DeleteScheduling(int idScheduling)
+        public async Task<ResponseModel<AgendamentoModel>> DeleteScheduling(int idScheduling)
         {
-            ResponseModel<SchedulingModel> respost = new ResponseModel<SchedulingModel>();
+            ResponseModel<AgendamentoModel> respost = new ResponseModel<AgendamentoModel>();
 
             try
             {
 
-                var scheduling = await _context.Scheduling.FirstOrDefaultAsync(schedulingBank => schedulingBank.Id == idScheduling);
+                var scheduling = await _context.Agendamento.FirstOrDefaultAsync(schedulingBank => schedulingBank.Id == idScheduling);
 
                 Console.WriteLine(scheduling);
 
@@ -111,13 +111,13 @@ namespace WebApi8_Scheduling.Services.Scheduling
             }
         }
 
-        public async Task<ResponseModel<List<SchedulingModel>>> GetAllSchedulings(int EnterpriseId)
+        public async Task<ResponseModel<List<AgendamentoModel>>> GetAllSchedulings(int EnterpriseId)
         {
-            ResponseModel<List<SchedulingModel>> respost = new ResponseModel<List<SchedulingModel>>();
+            ResponseModel<List<AgendamentoModel>> respost = new ResponseModel<List<AgendamentoModel>>();
 
             try
             {
-                var enterprise = await _context.Enterprise.FirstOrDefaultAsync(a => a.Id == EnterpriseId);
+                var enterprise = await _context.Empresa.FirstOrDefaultAsync(a => a.Id == EnterpriseId);
 
                 if (enterprise == null)
                 {
@@ -125,8 +125,8 @@ namespace WebApi8_Scheduling.Services.Scheduling
                     return respost;
                 }
 
-                var schedulings = await _context.Scheduling
-                    .Where(s => s.EnterpriseId == EnterpriseId)
+                var schedulings = await _context.Agendamento
+                    .Where(s => s.EmpresaId == EnterpriseId)
                     .ToListAsync();
 
                 respost.Dados = schedulings;

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WebApi8_Scheduling.Dto.User;
 using WebApi8_Scheduling.Models;
-using WebApi8_Scheduling.Services.User;
+using WebApi8_Scheduling.Services.Empresa;
 
 namespace WebApi8_Scheduling.Controllers
 {
@@ -9,24 +9,24 @@ namespace WebApi8_Scheduling.Controllers
     [ApiController]
     public class EnterpriseController : ControllerBase
     {
-        private readonly IEnterpriseInterface _enterpriseInterface;
+        private readonly IEmpresaInterface _empresaInterface;
 
-        public EnterpriseController(IEnterpriseInterface enterpriseInterface)
+        public EnterpriseController(IEmpresaInterface empresaInterface)
         {
-            _enterpriseInterface = enterpriseInterface;
+            _empresaInterface = empresaInterface;
         }
 
         [HttpPost]
-        public async Task<ActionResult<ResponseModel<EnterpriseModel>>> CreateEnterprise(EnterpriseCreateDto enterprise)
+        public async Task<ActionResult<ResponseModel<EmpresaModel>>> CreateEnterprise(EnterpriseCreateDto enterprise)
         {
-            var newEnterprise = await _enterpriseInterface.CreateEnterprise(enterprise);
+            var newEnterprise = await _empresaInterface.CreateEnterprise(enterprise);
             return Ok(newEnterprise);
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult<ResponseModel<EnterpriseModel>>> LoginEnterprise(EnterpriseLoginDto enterpriseLoginDto)
+        public async Task<ActionResult<ResponseModel<EmpresaModel>>> LoginEnterprise(EnterpriseLoginDto enterpriseLoginDto)
         {
-            var enterpriseLogin = await _enterpriseInterface.LoginEnterprise(enterpriseLoginDto);
+            var enterpriseLogin = await _empresaInterface.LoginEnterprise(enterpriseLoginDto);
             return Ok(enterpriseLogin);
         }
 

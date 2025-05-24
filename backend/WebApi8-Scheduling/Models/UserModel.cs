@@ -8,6 +8,6 @@ public class UserModel
     public string Email { get; set; }
     public string Password { get; set; }
     [JsonIgnore]
-    public EnterpriseModel? Enterprise { get; set; }
+    public EmpresaModel? Enterprise { get; set; }
     public int? EnterpriseId { get; set; }
 }

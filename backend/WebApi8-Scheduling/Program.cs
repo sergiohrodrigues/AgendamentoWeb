@@ -1,11 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using WebApi8_Scheduling.Data;
-using WebApi8_Scheduling.Services.AgendaBase;
-using WebApi8_Scheduling.Services.Client;
+using WebApi8_Scheduling.Services.Cliente;
+using WebApi8_Scheduling.Services.Empresa;
 using WebApi8_Scheduling.Services.Professional;
 using WebApi8_Scheduling.Services.Scheduling;
 using WebApi8_Scheduling.Services.Time;
-using WebApi8_Scheduling.Services.User;
+using WebApi8_Scheduling.Services.Servico;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,14 +28,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddScoped<IEnterpriseInterface, EnterpriseService>();
-builder.Services.AddScoped<IClientInterface, ClientService>();
-builder.Services.AddScoped<ISchedulingInterface, SchedulingService>();
-builder.Services.AddScoped<IServiceInterface, ServiceService>();
+builder.Services.AddScoped<IEmpresaInterface, EmpresaService>();
+builder.Services.AddScoped<IClienteInterface, ClienteService>();
+builder.Services.AddScoped<IAgendamentoInterface, AgendamentoService>();
+builder.Services.AddScoped<IServicoInterface, ServicoServico>();
 builder.Services.AddScoped<ITimeService, TimeService>();
 builder.Services.AddScoped<IProfessionalService, ProfessionalService>();
-builder.Services.AddScoped<IAgendaDisponivelService, AgendaDisponivelService>();
-builder.Services.AddScoped<IUserService, UserService>();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
 {

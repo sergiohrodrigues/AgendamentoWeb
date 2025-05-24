@@ -1,6 +1,6 @@
 namespace WebApi8_Scheduling.Models;
 
-public class AgendaIndisponivel
+public class AgendaIndisponivelModel
 {
     public int Id { get; set; }
     public int ProfissionalId { get; set; }

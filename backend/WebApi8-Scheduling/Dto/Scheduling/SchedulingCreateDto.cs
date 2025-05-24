@@ -5,11 +5,11 @@ namespace WebApi8_Scheduling.Dto.Scheduling
 {
     public class SchedulingCreateDto
     {
-        public DateTime DateHour { get; set; }
-        public string Observation { get; set; }
-        public int ServiceId { get; set; }
-        public int EnterpriseId { get; set; }
-        public int ClientId { get; set; }
-        public int ProfessionalId { get; set; }
+        public DateTime Data { get; set; }
+        public string Observacao { get; set; }
+        public int ServicoId { get; set; }
+        public int EmpresaId { get; set; }
+        public int ClienteId { get; set; }
+        public int ProfissionalId { get; set; }
     }
 }

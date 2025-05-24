@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WebApi8_Scheduling.Dto.Client;
 using WebApi8_Scheduling.Models;
-using WebApi8_Scheduling.Services.Client;
+using WebApi8_Scheduling.Services.Cliente;
 
 namespace WebApi8_Scheduling.Controllers
 {
@@ -9,11 +9,11 @@ namespace WebApi8_Scheduling.Controllers
     [ApiController]
     public class ClientController : ControllerBase
     {
-        private readonly IClientInterface _clientInterface;
+        private readonly IClienteInterface _clienteInterface;
 
-        public ClientController(IClientInterface clientInterface)
+        public ClientController(IClienteInterface clienteInterface)
         {
-            _clientInterface = clientInterface;
+            _clienteInterface = clienteInterface;
         }
 
         //[HttpGet]
@@ -24,23 +24,23 @@ namespace WebApi8_Scheduling.Controllers
         //}
 
         [HttpPost]
-        public async Task<ActionResult<ResponseModel<ClientModel>>> CreateClient(ClientCreateDto pClient)
+        public async Task<ActionResult<ResponseModel<ClienteModel>>> CriarCliente(CriarClienteDto pClient)
         {
-            var client = await _clientInterface.CreateClient(pClient);
-            return Ok(client);
+            var cliente = await _clienteInterface.CriarCliente(pClient);
+            return Ok(cliente);
         }
 
         [HttpPut("{clientId}")]
-        public async Task<ActionResult<ResponseModel<ClientModel>>> UpdateClient(int clientId, ClientUpdateDto pClient)
+        public async Task<ActionResult<ResponseModel<ClienteModel>>> UpdateClient(int clientId, ClientUpdateDto pClient)
         {
-            var client = await _clientInterface.UpdateClient(clientId, pClient);
+            var client = await _clienteInterface.UpdateClient(clientId, pClient);
             return Ok(client);
         }
 
         [HttpDelete("{clientId}")]
-        public async Task<ActionResult<ResponseModel<ClientModel>>> DeleteClient(int clientId)
+        public async Task<ActionResult<ResponseModel<ClienteModel>>> DeleteClient(int clientId)
         {
-            var client = await _clientInterface.DeleteClient(clientId);
+            var client = await _clienteInterface.DeleteClient(clientId);
             return Ok(client);
         }
 

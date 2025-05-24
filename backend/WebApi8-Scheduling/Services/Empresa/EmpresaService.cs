@@ -1,27 +1,25 @@
-﻿using Azure;
-using Microsoft.EntityFrameworkCore;
-using WebApi8_Scheduling.Data;
+﻿using WebApi8_Scheduling.Data;
 using WebApi8_Scheduling.Dto.User;
 using WebApi8_Scheduling.Models;
 
-namespace WebApi8_Scheduling.Services.User
+namespace WebApi8_Scheduling.Services.Empresa
 {
-    public class EnterpriseService : IEnterpriseInterface
+    public class EmpresaService : IEmpresaInterface
     {
         private readonly AppDbContext _context;
 
-        public EnterpriseService(AppDbContext context)
+        public EmpresaService(AppDbContext context)
         {
             _context = context;
         }
 
-        public async Task<ResponseModel<EnterpriseModel>> CreateEnterprise(EnterpriseCreateDto userCreateDto)
+        public async Task<ResponseModel<EmpresaModel>> CreateEnterprise(EnterpriseCreateDto userCreateDto)
         {
-            ResponseModel<EnterpriseModel> respost = new ResponseModel<EnterpriseModel>();
+            ResponseModel<EmpresaModel> respost = new ResponseModel<EmpresaModel>();
 
             try
             {
-                var newEnterprise = new EnterpriseModel
+                var newEnterprise = new EmpresaModel
                 {
                     Nome = userCreateDto.Nome,
                     Cnpj = userCreateDto.Cnpj,
@@ -30,7 +28,7 @@ namespace WebApi8_Scheduling.Services.User
                     Endereco = userCreateDto.Endereco,
                 };
 
-                _context.Enterprise.Add(newEnterprise);
+                _context.Empresa.Add(newEnterprise);
                 _context.SaveChanges();
 
                 respost.Dados = newEnterprise;
@@ -47,9 +45,9 @@ namespace WebApi8_Scheduling.Services.User
             }
         }
 
-        public async Task<ResponseModel<EnterpriseModel>> LoginEnterprise(EnterpriseLoginDto userLoginDto)
+        public async Task<ResponseModel<EmpresaModel>> LoginEnterprise(EnterpriseLoginDto userLoginDto)
         {
-            ResponseModel<EnterpriseModel> respost = new ResponseModel<EnterpriseModel>();
+            ResponseModel<EmpresaModel> respost = new ResponseModel<EmpresaModel>();
 
             try
             {
