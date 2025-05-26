@@ -87,6 +87,7 @@ namespace WebApi8_Scheduling.Services.Cliente
 
                 user.Nome = clientUpdateDto.Name;
                 user.Telefone = clientUpdateDto.Tel;
+                user.Email = clientUpdateDto.Email;
 
                 _context.Cliente.Update(user);
                 _context.SaveChanges();

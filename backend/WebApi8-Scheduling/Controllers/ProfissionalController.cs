@@ -38,6 +38,13 @@ namespace WebApi8_Scheduling.Controllers
             return Ok(servicos);
         }
         
+        [HttpPost("{professionalId}/dia-indisponivel")]
+        public async Task<ActionResult<ResponseModel<string>>> RemoverDiaDaAgendaDoProfissional(int professionalId, RemoverDiaProfissionalDto pRemoverDiaProfissional)
+        {
+            var diaIndisponivel = await _professionalInterface.RemoverDiaDaAgendaDoProfissional(professionalId, pRemoverDiaProfissional);
+            return Ok(diaIndisponivel);
+        }
+        
         
     }
 }

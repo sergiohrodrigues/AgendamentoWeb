@@ -9,5 +9,6 @@ namespace WebApi8_Scheduling.Services.Professional
         Task<ResponseModel<ProfissionalModel>> CreateProfessional(ProfessionalCreateDto pProfessional);
         Task<ResponseModel<List<ProfissionalModel>>> GetAllProfessional(int enterpriseId);
         Task<ResponseModel<List<ProfissionalServico>>> BuscarServicosProfissional(int profissionalId);
+        Task<ResponseModel<string>> RemoverDiaDaAgendaDoProfissional(int profissionalId, RemoverDiaProfissionalDto pRemoverDiaProfissional);
     }
 }

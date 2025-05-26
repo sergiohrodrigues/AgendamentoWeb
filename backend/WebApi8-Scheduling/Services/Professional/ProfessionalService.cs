@@ -85,7 +85,7 @@ namespace WebApi8_Scheduling.Services.Professional
 
         public async Task<ResponseModel<List<ProfissionalServico>>> BuscarServicosProfissional(int profissionalId)
         {
-            var resposta = new ResponseModel<List<ProfissionalServico>>();
+            ResponseModel<List<ProfissionalServico>> resposta = new ResponseModel<List<ProfissionalServico>>();
 
             try
             {
@@ -112,5 +112,32 @@ namespace WebApi8_Scheduling.Services.Professional
             }
         }
 
+        public async Task<ResponseModel<string>> RemoverDiaDaAgendaDoProfissional(int profissionalId, RemoverDiaProfissionalDto pRemoverDiaProfissional)
+        {
+            ResponseModel<string> resposta = new ResponseModel<string>();
+
+            try
+            {
+                var diaASerRemovido = new AgendaIndisponivelModel
+                {
+                    ProfissionalId = profissionalId,
+                    Data = pRemoverDiaProfissional.Data,
+                    Motivo = pRemoverDiaProfissional.Motivo
+                };
+
+                _context.AgendaIndisponivel.Add(diaASerRemovido);
+                _context.SaveChanges();
+
+                resposta.Dados = diaASerRemovido.Data.ToString();
+                resposta.Mensagem = "Dia removido da agenda com sucesso!";
+                return resposta;
+            }
+            catch (Exception ex)
+            {
+                resposta.Mensagem = ex.Message;
+                resposta.Status = false;
+                return resposta;
+            }
+        }
     }
 }
