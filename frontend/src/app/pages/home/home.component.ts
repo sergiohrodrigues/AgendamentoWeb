@@ -30,6 +30,7 @@ export class HomeComponent implements OnInit {
     horariosDoDiaSelecionado: string[] = [];
     horario: string | undefined;
     profissionalSelecionadoId: number | null = null;
+    minMonth: Date = new Date();
 
 
     constructor(private professionalService: ProfessionalService, private dayWithTimesService: DayWithTimesService) {}
@@ -42,6 +43,9 @@ export class HomeComponent implements OnInit {
 
         const teste = [this.converterParaDataCompleta(1, this.month)];
         this.date = teste[0];
+
+        const hoje = new Date();
+        this.minMonth = new Date(hoje.getFullYear(), hoje.getMonth(), 1); 
 
         console.log(this.horario)
     }

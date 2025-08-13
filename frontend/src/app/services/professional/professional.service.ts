@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Professional } from '../../interfaces/professional/professional';
+import { environment } from '../../environments/environment';
 
 export interface ResponseComDados<T> {
   dados: T;
@@ -12,12 +13,10 @@ export interface ResponseComDados<T> {
 })
 export class ProfessionalService {
 
-  private apiUrl = 'https://localhost:7034/api';
-
   constructor(private http: HttpClient) {}
   
   teste = 1;
   getAllProfessionals(): Observable<ResponseComDados<Professional[]>> {
-    return this.http.get<ResponseComDados<Professional[]>>(`${this.apiUrl}/Professional/${this.teste}`);
+    return this.http.get<ResponseComDados<Professional[]>>(`${environment}/Profissional/${this.teste}`);
   }
 }
