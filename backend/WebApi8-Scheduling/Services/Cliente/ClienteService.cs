@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Net.Mail;
+using System.Text.RegularExpressions;
+using Microsoft.EntityFrameworkCore;
 using WebApi8_Scheduling.Data;
 using WebApi8_Scheduling.Dto.Client;
 using WebApi8_Scheduling.Models;
@@ -47,7 +49,16 @@ namespace WebApi8_Scheduling.Services.Cliente
             ResponseModel<ClienteModel> resposta = new ResponseModel<ClienteModel>();
 
             try
-            {
+            {   
+                if (string.IsNullOrWhiteSpace(pCliente.Nome) || pCliente.Nome.Length < 3)
+                    throw new Exception("Por favor insira um nome com mais de 3 caracteres!");
+
+                if (!TelefoneValido(pCliente.Telefone))
+                    throw new Exception("Telefone inválido, por favor insira um telefone válido!");
+                
+                if (!EmailValido(pCliente.Email))
+                    throw new Exception("E-mail inválido, por favor insira um e-mail válido!");
+                
                 var novoCliente = new ClienteModel()
                 {
                     Nome = pCliente.Nome,
@@ -81,12 +92,21 @@ namespace WebApi8_Scheduling.Services.Cliente
 
                 if (user == null)
                 {
-                    respost.Mensagem = "User not found!";
+                    respost.Mensagem = "Usuário não encontrado!";
                     return respost;
                 }
+                
+                if (string.IsNullOrWhiteSpace(clientUpdateDto.Nome) || clientUpdateDto.Nome.Length < 3)
+                    throw new Exception("Por favor insira um nome com mais de 3 caracteres!");
 
-                user.Nome = clientUpdateDto.Name;
-                user.Telefone = clientUpdateDto.Tel;
+                if (!TelefoneValido(clientUpdateDto.Telefone))
+                    throw new Exception("Telefone inválido, por favor insira um telefone válido!");
+                
+                if (!EmailValido(clientUpdateDto.Email))
+                    throw new Exception("E-mail inválido, por favor insira um e-mail válido!");
+
+                user.Nome = clientUpdateDto.Nome;
+                user.Telefone = clientUpdateDto.Telefone;
                 user.Email = clientUpdateDto.Email;
 
                 _context.Cliente.Update(user);
@@ -134,5 +154,34 @@ namespace WebApi8_Scheduling.Services.Cliente
                 return respost;
             }
         }
+        
+        private bool EmailValido(string email)
+        {
+            try
+            {
+                var mail = new MailAddress(email);
+                
+                string dominio = mail.Host.ToLower();
+                
+                return mail.Address == email &&
+                       (dominio.EndsWith(".com") || dominio.EndsWith(".br"));
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        
+        private bool TelefoneValido(string telefone)
+        {
+            if (string.IsNullOrWhiteSpace(telefone))
+                return false;
+
+            string padrao = @"^\(?[1-9]{2}\)?\s?(9?[0-9]{4})-?[0-9]{4}$";
+
+            var xRetorno = Regex.IsMatch(telefone, padrao);
+            return xRetorno;
+        }
+
     }
 }
