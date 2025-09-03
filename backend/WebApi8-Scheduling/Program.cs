@@ -1,11 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using WebApi8_Scheduling.Data;
-using WebApi8_Scheduling.Services.Cliente;
-using WebApi8_Scheduling.Services.Empresa;
-using WebApi8_Scheduling.Services.Professional;
-using WebApi8_Scheduling.Services.Scheduling;
-using WebApi8_Scheduling.Services.Time;
-using WebApi8_Scheduling.Services.Servico;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,12 +21,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddScoped<IEmpresaInterface, EmpresaService>();
-builder.Services.AddScoped<IClienteInterface, ClienteService>();
-builder.Services.AddScoped<IAgendamentoInterface, AgendamentoService>();
-builder.Services.AddScoped<IServicoInterface, ServicoServico>();
-builder.Services.AddScoped<ITimeService, TimeService>();
-builder.Services.AddScoped<IProfessionalService, ProfessionalService>();
+// builder.Services.AddScoped<IEmpresaInterface, EmpresaService>();
+// builder.Services.AddScoped<IClienteInterface, ClienteService>();
+// builder.Services.AddScoped<IAgendamentoInterface, AgendamentoService>();
+// builder.Services.AddScoped<IServicoInterface, ServicoServico>();
+// builder.Services.AddScoped<ITimeService, TimeService>();
+// builder.Services.AddScoped<IProfessionalService, ProfessionalService>();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
 {

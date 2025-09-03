@@ -1,0 +1,6 @@
+@ShrSolution.AgendamentoWeb.Services.Backend_HostAddress = http://localhost:5258
+
+GET {{ShrSolution.AgendamentoWeb.Services.Backend_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
