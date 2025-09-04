@@ -7,25 +7,25 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi8-Scheduling", "WebAp
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{A178DA45-F33A-4E2B-8395-E7740210FE51}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Application", "2 - Application", "{0B0715CD-7ADB-43A1-A4C0-F7153853D57E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Services", "2 - Services", "{84444138-2192-4204-95B7-48104E045340}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Services", "1 - Services", "{84444138-2192-4204-95B7-48104E045340}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Application", "3 - Application", "{0B0715CD-7ADB-43A1-A4C0-F7153853D57E}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Domain", "3 - Domain", "{5241595F-54B4-4FB8-8A79-F8BE80E04D49}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Domain", "4 - Domain", "{5241595F-54B4-4FB8-8A79-F8BE80E04D49}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Infra", "4 - Infra", "{E4B19538-3A69-41A4-B92E-3D50107F52CC}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 - Infra", "5 - Infra", "{E4B19538-3A69-41A4-B92E-3D50107F52CC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backend", "Backend", "{E6FF9892-B01F-4725-BF6D-D927E92F09A4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{A0527A57-A7F6-40ED-8139-02FD9389C540}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShrSolution.AgendamentoWeb.Domain", "ShrSolution.AgendamentoWeb.Domain\ShrSolution.AgendamentoWeb.Domain.csproj", "{EA43E1E0-C9C9-45D6-BF8D-221350034B2C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShrSolution.AgendamentoWeb.Domain", "Source/ShrSolution.AgendamentoWeb.Domain\ShrSolution.AgendamentoWeb.Domain.csproj", "{EA43E1E0-C9C9-45D6-BF8D-221350034B2C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShrSolution.AgendamentoWeb.Application", "ShrSolution.AgendamentoWeb.Application\ShrSolution.AgendamentoWeb.Application.csproj", "{7CEB5256-B939-4F9C-AB27-FCC174BDE323}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShrSolution.AgendamentoWeb.Application", "Source/ShrSolution.AgendamentoWeb.Application\ShrSolution.AgendamentoWeb.Application.csproj", "{7CEB5256-B939-4F9C-AB27-FCC174BDE323}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShrSolution.AgendamentoWeb.Infra.Data", "ShrSolution.AgendamentoWeb.Infra.Data\ShrSolution.AgendamentoWeb.Infra.Data.csproj", "{AC15B05E-A239-4E08-982B-044333744A05}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShrSolution.AgendamentoWeb.Infra.Data", "Source/ShrSolution.AgendamentoWeb.Infra.Data\ShrSolution.AgendamentoWeb.Infra.Data.csproj", "{AC15B05E-A239-4E08-982B-044333744A05}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShrSolution.AgendamentoWeb.Services.Backend", "ShrSolution.AgendamentoWeb.Services.Backend\ShrSolution.AgendamentoWeb.Services.Backend.csproj", "{AAD8A0C6-2FEC-42EF-8839-0E027C1EFB76}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShrSolution.AgendamentoWeb.Services.Backend", "Source/ShrSolution.AgendamentoWeb.Services.Backend\ShrSolution.AgendamentoWeb.Services.Backend.csproj", "{AAD8A0C6-2FEC-42EF-8839-0E027C1EFB76}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
