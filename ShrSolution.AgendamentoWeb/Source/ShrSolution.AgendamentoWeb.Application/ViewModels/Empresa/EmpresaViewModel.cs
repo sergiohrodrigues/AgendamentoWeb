@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace ShrSolution.AgendamentoWeb.Application.ViewModels;
+namespace ShrSolution.AgendamentoWeb.Application.ViewModels.Empresa;
 
 public class EmpresaViewModel
 {
@@ -11,7 +11,7 @@ public class EmpresaViewModel
     public string Nome { get; set; } = string.Empty;
 
     [MaxLength(18)]
-    public string Cnpj { get; set; }
+    public string? Cnpj { get; set; }
 
     [MaxLength(100)]
     public string? Email { get; set; }

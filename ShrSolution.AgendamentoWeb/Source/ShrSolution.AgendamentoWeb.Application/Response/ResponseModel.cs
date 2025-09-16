@@ -1,4 +1,4 @@
-﻿namespace ShrSolution.AgendamentoWeb.Domain.Models
+﻿namespace ShrSolution.AgendamentoWeb.Application.Response
 {
     public class ResponseModel<T>
     {

@@ -17,7 +17,24 @@ namespace ShrSolution.AgendamentoWeb.Domain.Services
         {
             var xEmpresa = await _empresaRepository.ObterPorId(pEmpresaId);
 
+            if (xEmpresa == null)
+                throw new Exception("Empresa não encontrada");
+
             return xEmpresa; 
+        }
+
+        public void Adicionar(Empresa pEmpresa)
+        {
+            if (pEmpresa.Nome == null)
+                throw new Exception("Nome não pode ser nulo");
+
+            if(pEmpresa.Telefone == null)
+                throw new Exception("Telefone não pode ser nulo");
+
+            if(pEmpresa.Endereco == null)
+                throw new Exception("Endereço não pode ser nulo");
+
+            _empresaRepository.Adicionar(pEmpresa);
         }
 
         // public async Task<ResponseModel<Empresa>> CreateEnterprise(EnterpriseCreateDto userCreateDto)

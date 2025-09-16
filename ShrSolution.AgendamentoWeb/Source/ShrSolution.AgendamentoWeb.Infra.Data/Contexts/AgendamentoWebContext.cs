@@ -3,19 +3,19 @@ using ShrSolution.AgendamentoWeb.Domain.Models;
 
 namespace ShrSolution.AgendamentoWeb.Infra.Data.Contexts
 {
-    public class AgendamentosContext : DbContext
+    public class AgendamentoWebContext : DbContext
     {
-        public AgendamentosContext()
+        public AgendamentoWebContext()
         {
         }
 
-        public AgendamentosContext(DbContextOptions<AgendamentosContext> options) : base(options)
+        public AgendamentoWebContext(DbContextOptions<AgendamentoWebContext> options) : base(options)
         {
         }
 
         // public DbSet<Cliente> Cliente { get; set; }
         // public DbSet<Servico> Servico { get; set; }
-        // public DbSet<Agendamento> Agendamento { get; set; }
+        public DbSet<Agendamento> Agendamento { get; set; }
         public DbSet<Profissional> Profissional { get; set; }
         public DbSet<Empresa> Empresa { get; set; }
         // public DbSet<AgendaIndisponivel> AgendaIndisponivel { get; set; }

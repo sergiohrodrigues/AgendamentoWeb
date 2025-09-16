@@ -5,5 +5,6 @@ namespace ShrSolution.AgendamentoWeb.Domain.Services.Interfaces
     public interface IEmpresaService
     {
         public Task<Empresa?> ObterPorId(int id);
+        void Adicionar(Empresa pEmpresa);
     }
 }

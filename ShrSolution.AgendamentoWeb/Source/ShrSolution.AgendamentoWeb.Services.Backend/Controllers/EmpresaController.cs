@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ShrSolution.AgendamentoWeb.Application.Dto.Enterprise;
 using ShrSolution.AgendamentoWeb.Application.Interfaces;
+using ShrSolution.AgendamentoWeb.Application.Response;
 using ShrSolution.AgendamentoWeb.Application.ViewModels;
-using ShrSolution.AgendamentoWeb.Domain.Models;
+using ShrSolution.AgendamentoWeb.Application.ViewModels.Empresa;
 
 namespace ShrSolution.AgendamentoWeb.Services.Backend.Controllers
 {
@@ -20,17 +20,29 @@ namespace ShrSolution.AgendamentoWeb.Services.Backend.Controllers
         [HttpGet]
         public async Task<ActionResult<ResponseModel<EmpresaViewModel>>> ObterEmpresaPorId(int pEmpresaId)
         {
-            var newEnterprise = await _empresaApplicationService.ObterEmpresaPorId(pEmpresaId);
-            return Ok(newEnterprise);
+            try
+            {
+                var newEnterprise = await _empresaApplicationService.ObterEmpresaPorId(pEmpresaId);
+                return Ok(newEnterprise);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
-        //
-        // [HttpPost("login")]
-        // public async Task<ActionResult<ResponseModel<Empresa>>> LoginEnterprise(EnterpriseLoginDto enterpriseLoginDto)
-        // {
-        //     var enterpriseLogin = await _empresaInterface.LoginEnterprise(enterpriseLoginDto);
-        //     return Ok(enterpriseLogin);
-        // }
 
-
+        [HttpPost]
+        public async Task<ActionResult<ResponseModel<AdicionarEmpresaViewModel>>> Adicionar(AdicionarEmpresaViewModel pAdicionarEmpresaViewModel)
+        {
+            try
+            {
+                var xRetorno = await _empresaApplicationService.Adicionar(pAdicionarEmpresaViewModel);
+                return Ok(xRetorno);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
     }
 }

@@ -7,9 +7,9 @@ namespace ShrSolution.AgendamentoWeb.Infra.Data.Repositories;
 
 public class ProfissionalRepository : IProfissionalRepository
 {
-    private readonly AgendamentosContext _context;
+    private readonly AgendamentoWebContext _context;
 
-    public ProfissionalRepository(AgendamentosContext context)
+    public ProfissionalRepository(AgendamentoWebContext context)
     {
         _context = context;
     }

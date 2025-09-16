@@ -1,6 +1,0 @@
-@WebApi8_Scheduling_HostAddress = http://localhost:5029
-
-GET {{WebApi8_Scheduling_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

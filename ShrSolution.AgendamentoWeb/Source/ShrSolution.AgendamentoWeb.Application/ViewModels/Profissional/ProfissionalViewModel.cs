@@ -1,4 +1,4 @@
-namespace ShrSolution.AgendamentoWeb.Application.ViewModels;
+namespace ShrSolution.AgendamentoWeb.Application.ViewModels.Profissional;
 
 // public class ProfissionalViewModel
 // {

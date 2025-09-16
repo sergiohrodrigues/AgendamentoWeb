@@ -1,10 +1,10 @@
 ﻿// using Microsoft.AspNetCore.Mvc;
+// using ShrSolution.AgendamentoWeb.Application.Dto.Scheduling;
+// using ShrSolution.AgendamentoWeb.Application.Response;
 // using ShrSolution.AgendamentoWeb.Domain.Models;
-// using WebApi8_Scheduling.Domain.Models;
-// using WebApi8_Scheduling.Domain.Services.Interfaces;
-// using WebApi8_Scheduling.Dto.Scheduling;
+// using ShrSolution.AgendamentoWeb.Domain.Services.Interfaces;
 //
-// namespace ShrSolution.AgendamentoWeb.Backend.Controllers
+// namespace ShrSolution.AgendamentoWeb.Services.Backend.Controllers
 // {
 //     [Microsoft.AspNetCore.Components.Route("api/[controller]")]
 //     [ApiController]

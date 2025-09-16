@@ -7,9 +7,9 @@ namespace ShrSolution.AgendamentoWeb.Infra.Data.Repositories;
 
 public class EmpresaRepository : IEmpresaRepository
 {
-    private readonly AgendamentosContext _context;
+    private readonly AgendamentoWebContext _context;
 
-    public EmpresaRepository(AgendamentosContext context)
+    public EmpresaRepository(AgendamentoWebContext context)
     {
         _context = context;
     }
@@ -19,5 +19,11 @@ public class EmpresaRepository : IEmpresaRepository
         var xRetorno = await _context.Empresa.FindAsync(id);
 
         return xRetorno;
+    }
+
+    public void Adicionar(Empresa pEmpresa)
+    {
+        _context.Add(pEmpresa);
+        _context.SaveChanges();
     }
 }
