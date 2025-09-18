@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ShrSolution.AgendamentoWeb.Application.Interfaces;
 using ShrSolution.AgendamentoWeb.Application.Response;
-using ShrSolution.AgendamentoWeb.Application.ViewModels;
 using ShrSolution.AgendamentoWeb.Application.ViewModels.Empresa;
 
 namespace ShrSolution.AgendamentoWeb.Services.Backend.Controllers

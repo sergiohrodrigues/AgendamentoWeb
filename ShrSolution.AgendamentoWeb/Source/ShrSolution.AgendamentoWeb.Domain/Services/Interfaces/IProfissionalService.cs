@@ -2,9 +2,10 @@
 
 namespace ShrSolution.AgendamentoWeb.Domain.Services.Interfaces
 {
-    public interface IProfessionalService
+    public interface IProfissionalService
     {
-        public Task<Profissional?> ObterPorId(int pProfessionalId);
+        public Task<Profissional?> ObterPorId(int pProfissionalId);
+        public void Adicionar(Profissional pProfissional);
         // Task<ResponseModel<Profissional>> CreateProfessional(ProfessionalCreateDto pProfessional);
         // Task<ResponseModel<List<Profissional>>> GetAllProfessional(int enterpriseId);
         // Task<ResponseModel<List<ProfissionalServico>>> BuscarServicosProfissional(int profissionalId);

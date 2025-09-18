@@ -5,6 +5,6 @@ namespace ShrSolution.AgendamentoWeb.Domain.Interfaces;
 public interface IProfissionalRepository
 {
     Task<Profissional?> ObterPorId(int id);
-    Task<Profissional> AddAsync(Profissional pProfissional);
+    public void Adicionar(Profissional pProfissional);
     Task<IEnumerable<Profissional>> GetAllAsync();
 }

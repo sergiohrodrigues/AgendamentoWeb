@@ -1,6 +1,8 @@
+using ShrSolution.AgendamentoWeb.Application.ViewModels.Profissional;
+
 namespace ShrSolution.AgendamentoWeb.Application.Interfaces;
 
 public interface IProfissionalApplicationService
 {
-    // IQueryable<ProfissionalViewModel>
+    Task<AdicionarProfissionalViewModel?> Adicionar(AdicionarProfissionalViewModel pAdicionarProfissionalViewModel);
 }

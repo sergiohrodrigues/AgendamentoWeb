@@ -25,9 +25,10 @@ builder.Services.AddCors(options =>
 
 // Application Services
 builder.Services.AddScoped<IEmpresaApplicationService, EmpresaApplicationService>();
+builder.Services.AddScoped<IProfissionalApplicationService, ProfissionalApplicationService>();
 
 // Services
-builder.Services.AddScoped<IProfessionalService, ProfessionalService>();
+builder.Services.AddScoped<IProfissionalService, ProfissionalService>();
 builder.Services.AddScoped<IEmpresaService, EmpresaService>();
 
 // Repository

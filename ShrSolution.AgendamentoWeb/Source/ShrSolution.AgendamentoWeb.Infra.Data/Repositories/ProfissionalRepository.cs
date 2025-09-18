@@ -21,11 +21,10 @@ public class ProfissionalRepository : IProfissionalRepository
         return  xRetorno;
     }
 
-    public async Task<Profissional> AddAsync(Profissional pProfissional)
+    public void Adicionar (Profissional pProfissional)
     {
         _context.Profissional.Add(pProfissional);
-        await _context.SaveChangesAsync();
-        return pProfissional;
+        _context.SaveChanges();
     }
 
     public async Task<IEnumerable<Profissional>> GetAllAsync()

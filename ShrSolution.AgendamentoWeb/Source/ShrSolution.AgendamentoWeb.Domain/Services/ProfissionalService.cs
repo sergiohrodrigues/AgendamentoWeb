@@ -4,58 +4,25 @@ using ShrSolution.AgendamentoWeb.Domain.Services.Interfaces;
 
 namespace ShrSolution.AgendamentoWeb.Domain.Services
 {
-    public class ProfessionalService : IProfessionalService
+    public class ProfissionalService : IProfissionalService
     {
         private readonly IProfissionalRepository _profissionalRepository;
-        public ProfessionalService(IProfissionalRepository pProfissionalRepository)
+        public ProfissionalService(IProfissionalRepository pProfissionalRepository)
         {
             _profissionalRepository = pProfissionalRepository;
         }
 
-        public async Task<Profissional?> ObterPorId(int pProfessionalId)
+        public async Task<Profissional?> ObterPorId(int pProfissionalId)
         {
-            var xProfissional = await _profissionalRepository.ObterPorId(pProfessionalId);
+            var xProfissional = await _profissionalRepository.ObterPorId(pProfissionalId);
 
             return xProfissional;
         }
 
-        // public async Task<ResponseModel<Profissional>> CreateProfessional(ProfessionalCreateDto pProfessional)
-        // {
-        //     ResponseModel<Profissional> respost = new ResponseModel<Profissional>();
-        //
-        //     try
-        //     {
-        //         // var enterprise = _context.Empresa.FirstOrDefault(p => p.Id == pProfessional.EnterpriseId);
-        //         //
-        //         // if (enterprise == null)
-        //         // {
-        //         //     respost.Mensagem = "Enterprise not found!";
-        //         //     return respost;
-        //         // }
-        //         //
-        //         // var newProfessinoal = new Profissional
-        //         // {
-        //         //     Nome = pProfessional.Nome,
-        //         //     Email = pProfessional.Email,
-        //         //     Telefone = pProfessional.Telefone,
-        //         //     EmpresaId = pProfessional.EnterpriseId
-        //         // };
-        //         //
-        //         // _context.Profissional.Add(newProfessinoal);
-        //         // _context.SaveChanges();
-        //         //
-        //         // respost.Dados = newProfessinoal;
-        //
-        //         respost.Mensagem = "Professional create successfull!";
-        //         return respost;
-        //     }
-        //     catch (Exception ex)
-        //     {
-        //         respost.Mensagem = ex.Message;
-        //         respost.Status = false;
-        //         return respost;
-        //     }
-        // }
+        public void Adicionar (Profissional pProfissional)
+        {
+            _profissionalRepository.Adicionar(pProfissional);
+        }
         //
         // public async Task<ResponseModel<List<Profissional>>> GetAllProfessional(int enterpriseId)
         // {

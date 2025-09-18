@@ -12,7 +12,6 @@ public class EmpresaApplicationService : IEmpresaApplicationService
     private readonly IEmpresaService _empresaService;
     private readonly IMapper _mapper;
 
-
     public EmpresaApplicationService(IEmpresaService empresaService, IMapper mapper)
     {
         _empresaService = empresaService;

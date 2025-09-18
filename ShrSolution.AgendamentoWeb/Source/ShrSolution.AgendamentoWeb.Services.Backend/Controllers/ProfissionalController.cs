@@ -1,25 +1,34 @@
-﻿// using Microsoft.AspNetCore.Mvc;
-// using ShrSolution.AgendamentoWeb.Domain.Models;
-// using ShrSolution.AgendamentoWeb.Domain.Services.Interfaces;
-//
-// namespace ShrSolution.AgendamentoWeb.Services.Backend.Controllers
-// {
-//     [Route("api/[controller]")]
-//     [ApiController]
-//     public class ProfissionalController : ControllerBase
-//     {
-//         private readonly IProfessionalService _professionalInterface;
-//
-//         public ProfissionalController(IProfessionalService schedulingInterface)
-//         {
-//             _professionalInterface = schedulingInterface;
-//         }
-//
-//         [HttpGet("{ProfissionalId}")]
-//         public async Task<ActionResult<ResponseModel<List<Profissional>>>> ObterProfissionalPorId(int ProfissionalId)
-//         {
-//             var newEnterprise = await _professionalInterface.ObterProfissionalPorId(ProfissionalId);
-//             return Ok(newEnterprise);
-//         }
-//     }
-// }
+﻿using Microsoft.AspNetCore.Mvc;
+using ShrSolution.AgendamentoWeb.Application.Interfaces;
+using ShrSolution.AgendamentoWeb.Application.Response;
+using ShrSolution.AgendamentoWeb.Application.ViewModels.Empresa;
+using ShrSolution.AgendamentoWeb.Application.ViewModels.Profissional;
+
+namespace ShrSolution.AgendamentoWeb.Services.Backend.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class ProfissionalController : ControllerBase
+    {
+        private readonly IProfissionalApplicationService _profissionalApplicationService;
+
+        public ProfissionalController(IProfissionalApplicationService profissionalApplicationService)
+        {
+            _profissionalApplicationService = profissionalApplicationService;
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<ResponseModel<AdicionarProfissionalViewModel>>> ObterProfissionalPorId(AdicionarProfissionalViewModel pAdicionarProfissionalViewModel)
+        {
+            try
+            {
+                var xRetorno = await _profissionalApplicationService.Adicionar(pAdicionarProfissionalViewModel);
+                return Ok(xRetorno);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+    }
+}
