@@ -1,8 +1,9 @@
 ﻿using System.Text.Json.Serialization;
+using ShrSolution.AgendamentoWeb.Domain.Core;
 
 namespace ShrSolution.AgendamentoWeb.Domain.Models
 {
-    public class Profissional
+    public class Profissional : Entity
     {
         public int Id { get; set; }
         public string Nome { get; set; }
