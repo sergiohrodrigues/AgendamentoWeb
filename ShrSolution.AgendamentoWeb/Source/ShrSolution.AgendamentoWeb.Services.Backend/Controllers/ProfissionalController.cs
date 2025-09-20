@@ -18,7 +18,7 @@ namespace ShrSolution.AgendamentoWeb.Services.Backend.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<ResponseModel<AdicionarProfissionalViewModel>>> ObterProfissionalPorId(AdicionarProfissionalViewModel pAdicionarProfissionalViewModel)
+        public async Task<ActionResult<ResponseModel<AdicionarProfissionalViewModel>>> Adicionar(AdicionarProfissionalViewModel pAdicionarProfissionalViewModel)
         {
             try
             {

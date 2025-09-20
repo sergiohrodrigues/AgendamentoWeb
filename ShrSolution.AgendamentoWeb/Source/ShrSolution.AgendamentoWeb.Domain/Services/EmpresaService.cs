@@ -15,12 +15,12 @@ namespace ShrSolution.AgendamentoWeb.Domain.Services
 
         public async Task<Empresa?> ObterPorId(int pEmpresaId)
         {
-            var xEmpresa = await _empresaRepository.ObterPorId(pEmpresaId);
+            var xRetorno = await _empresaRepository.ObterPorId(pEmpresaId);
 
-            if (xEmpresa == null)
+            if (xRetorno == null)
                 throw new Exception("Empresa não encontrada");
 
-            return xEmpresa; 
+            return xRetorno;
         }
 
         public void Adicionar(Empresa pEmpresa)

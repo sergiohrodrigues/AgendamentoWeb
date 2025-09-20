@@ -26,20 +26,23 @@ builder.Services.AddCors(options =>
 // Application Services
 builder.Services.AddScoped<IEmpresaApplicationService, EmpresaApplicationService>();
 builder.Services.AddScoped<IProfissionalApplicationService, ProfissionalApplicationService>();
+builder.Services.AddScoped<IClienteApplicationService, ClienteApplicationService>();
 
 // Services
 builder.Services.AddScoped<IProfissionalService, ProfissionalService>();
 builder.Services.AddScoped<IEmpresaService, EmpresaService>();
+builder.Services.AddScoped<IClienteService, ClienteService>();
 
 // Repository
 builder.Services.AddScoped<IProfissionalRepository, ProfissionalRepository>();
 builder.Services.AddScoped<IEmpresaRepository, EmpresaRepository>();
+builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
 
 var loggerFactory = LoggerFactory.Create(builder => builder.AddConsole());
 
 var config = new MapperConfiguration(
     cfg => {
-        cfg.AddMaps(typeof(MappingProfile).Assembly);
+        cfg.AddMaps(typeof(ViewModelParaDomain).Assembly);
     },
     loggerFactory
 );

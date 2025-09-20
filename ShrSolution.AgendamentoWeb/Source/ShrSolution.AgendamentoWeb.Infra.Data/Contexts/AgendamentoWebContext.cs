@@ -13,7 +13,7 @@ namespace ShrSolution.AgendamentoWeb.Infra.Data.Contexts
         {
         }
 
-        // public DbSet<Cliente> Cliente { get; set; }
+        public DbSet<Cliente> Cliente { get; set; }
         // public DbSet<Servico> Servico { get; set; }
         public DbSet<Agendamento> Agendamento { get; set; }
         public DbSet<Profissional> Profissional { get; set; }
