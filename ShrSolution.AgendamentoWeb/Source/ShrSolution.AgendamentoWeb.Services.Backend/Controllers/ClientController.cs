@@ -18,13 +18,27 @@ namespace ShrSolution.AgendamentoWeb.Services.Backend.Controllers
             _clienteApplicationService = clienteApplicationService;
         }
 
-        //[HttpGet]
-        //public async Task<ActionResult<ResponseModel<List<ClientModel>>>> GetAllClients(int pClientId)
-        //{
-        //    var client = await _clientInterface.GetAllClients(pClientId);
-        //    return Ok(client);
-        //}
+        // [HttpGet]
+        // public async Task<ActionResult<ResponseModel<List<ClienteViewModel>>>> ObterTodosClientes()
+        // {
+        //     var client = _clienteApplicationService.ObterTodosClientes();
+        //     return Ok(client);
+        // }
 
+        [HttpGet("{clientId}")]
+        public async Task<ActionResult<ResponseModel<ClienteViewModel>>> ObterClientePorId(int clientId)
+        {
+            try
+            {
+                var xCliente = await _clienteApplicationService.ObterClientePorId(clientId);
+                return Ok(xCliente);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+        
         [HttpPost]
         public async Task<ActionResult<ResponseModel<AdicionarClienteViewModel>>> Adicionar(AdicionarClienteViewModel pClient)
         {

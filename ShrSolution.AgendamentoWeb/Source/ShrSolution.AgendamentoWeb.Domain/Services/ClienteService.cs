@@ -13,7 +13,7 @@ public class ClienteService : IClienteService
         _clienteRepository = clienteRepository;
     }
 
-    public Task<Cliente?> ObterPorId(int pClienteId)
+    public async Task<Cliente?> ObterPorId(int pClienteId)
     {
         var xRetorno = _clienteRepository.ObterPorId(pClienteId);
         

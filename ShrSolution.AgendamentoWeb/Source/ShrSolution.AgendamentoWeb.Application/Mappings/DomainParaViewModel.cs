@@ -6,13 +6,10 @@ using ShrSolution.AgendamentoWeb.Domain.Models;
 
 namespace ShrSolution.AgendamentoWeb.Application.Mappings;
 
-public class ViewModelParaDomain : Profile
+public class DomainParaViewModel : Profile
 {
-    public ViewModelParaDomain()
+    public DomainParaViewModel()
     {
-        CreateMap<EmpresaViewModel, Empresa>();
-        CreateMap<AdicionarEmpresaViewModel, Empresa>();
-        CreateMap<AdicionarProfissionalViewModel, Profissional>();
-        CreateMap<AdicionarClienteViewModel, Cliente>();
+        CreateMap<Cliente, ClienteViewModel>();
     }
 }

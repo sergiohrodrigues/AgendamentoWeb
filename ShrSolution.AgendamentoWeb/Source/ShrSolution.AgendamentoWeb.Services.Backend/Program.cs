@@ -43,6 +43,7 @@ var loggerFactory = LoggerFactory.Create(builder => builder.AddConsole());
 var config = new MapperConfiguration(
     cfg => {
         cfg.AddMaps(typeof(ViewModelParaDomain).Assembly);
+        cfg.AddMaps(typeof(DomainParaViewModel).Assembly);
     },
     loggerFactory
 );

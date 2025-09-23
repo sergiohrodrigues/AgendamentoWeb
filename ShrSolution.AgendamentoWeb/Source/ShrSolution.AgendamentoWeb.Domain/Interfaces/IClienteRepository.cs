@@ -1,9 +1,8 @@
 using ShrSolution.AgendamentoWeb.Domain.Models;
+using ShrSolution.AgendamentoWeb.Domain.Repositories;
 
 namespace ShrSolution.AgendamentoWeb.Domain.Interfaces;
 
-public interface IClienteRepository
+public interface IClienteRepository : IRepository<int, Cliente>
 {
-    Task<Cliente?> ObterPorId(int id);
-    void Adicionar(Cliente pCliente);
 }

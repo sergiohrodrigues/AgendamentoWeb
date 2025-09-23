@@ -1,4 +1,5 @@
 ﻿using ShrSolution.AgendamentoWeb.Domain.Models;
+using ShrSolution.AgendamentoWeb.Domain.Repositories;
 
 namespace ShrSolution.AgendamentoWeb.Domain.Services.Interfaces
 {

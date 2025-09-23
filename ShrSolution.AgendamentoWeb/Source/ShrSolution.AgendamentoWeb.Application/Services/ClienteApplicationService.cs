@@ -1,4 +1,5 @@
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using ShrSolution.AgendamentoWeb.Application.Interfaces;
 using ShrSolution.AgendamentoWeb.Application.ViewModels.Cliente;
 using ShrSolution.AgendamentoWeb.Domain.Interfaces;
@@ -30,12 +31,21 @@ public class ClienteApplicationService : IClienteApplicationService
         return xRetorno;
     }
 
-    public async Task<AdicionarClienteViewModel> Adicionar(AdicionarClienteViewModel pClienteViewModel)
+    // public List<ClienteViewModel> ObterTodosClientes()
+    // {
+    //     var xRetorno = _clienteService.ObterTodos()
+    //         .ProjectTo<ClienteViewModel>(_mapper.ConfigurationProvider)
+    //         .ToList();
+    //
+    //     return xRetorno;
+    // }
+
+    public Task<AdicionarClienteViewModel> Adicionar(AdicionarClienteViewModel pClienteViewModel)
     {
         var xRetorno = _mapper.Map<Cliente>(pClienteViewModel);
 
         _clienteService.Adicionar(xRetorno);
 
-        return pClienteViewModel;
+        return Task.FromResult(pClienteViewModel);
     }
 }
