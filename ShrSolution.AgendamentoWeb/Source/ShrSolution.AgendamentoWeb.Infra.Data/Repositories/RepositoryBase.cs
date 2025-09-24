@@ -10,7 +10,7 @@ public class RepositoryBase
     {
         _context = context;
     }
-    
+
     public int SaveChanges()
     {
         return _context.SaveChanges();

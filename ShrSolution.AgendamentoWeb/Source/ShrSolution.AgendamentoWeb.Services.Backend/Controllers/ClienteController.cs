@@ -9,21 +9,21 @@ namespace ShrSolution.AgendamentoWeb.Services.Backend.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ClientController : ControllerBase
+    public class ClienteController : ControllerBase
     {
         private readonly IClienteApplicationService _clienteApplicationService;
 
-        public ClientController(IClienteApplicationService clienteApplicationService)
+        public ClienteController(IClienteApplicationService clienteApplicationService)
         {
             _clienteApplicationService = clienteApplicationService;
         }
 
-        // [HttpGet]
-        // public async Task<ActionResult<ResponseModel<List<ClienteViewModel>>>> ObterTodosClientes()
-        // {
-        //     var client = _clienteApplicationService.ObterTodosClientes();
-        //     return Ok(client);
-        // }
+        [HttpGet]
+        public async Task<ActionResult<ResponseModel<List<ClienteViewModel>>>> ObterTodosClientes()
+        {
+            var client = _clienteApplicationService.ObterTodosClientes();
+            return Ok(client);
+        }
 
         [HttpGet("{clientId}")]
         public async Task<ActionResult<ResponseModel<ClienteViewModel>>> ObterClientePorId(int clientId)
@@ -44,7 +44,7 @@ namespace ShrSolution.AgendamentoWeb.Services.Backend.Controllers
         {
             try
             {
-                var xCliente = await _clienteApplicationService.Adicionar(pClient);
+                var xCliente = await _clienteApplicationService.AdicionarCliente(pClient);
                 return Ok(xCliente);
             }
             catch (Exception e)
@@ -53,20 +53,32 @@ namespace ShrSolution.AgendamentoWeb.Services.Backend.Controllers
             }
         }
 
-        // [HttpPut("{clientId}")]
-        // public async Task<ActionResult<ResponseModel<Cliente>>> UpdateClient(int clientId, ClientUpdateDto pClient)
-        // {
-        //     var client = await _clienteInterface.UpdateClient(clientId, pClient);
-        //     return Ok(client);
-        // }
-        //
-        // [HttpDelete("{clientId}")]
-        // public async Task<ActionResult<ResponseModel<Cliente>>> DeleteClient(int clientId)
-        // {
-        //     var client = await _clienteInterface.DeleteClient(clientId);
-        //     return Ok(client);
-        // }
-
-
+        [HttpPut("{clientId}")]
+        public async Task<ActionResult<ResponseModel<Cliente>>> UpdateClient(int clientId, EditarClienteViewModel pClienteViewModel)
+        {
+            try
+            {
+                var client = await _clienteApplicationService.EditarCliente(clientId, pClienteViewModel);
+                return Ok(client);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+        
+        [HttpDelete("{clientId}")]
+        public async Task<ActionResult<ResponseModel<bool>>> RemoverCliente(int clientId)
+        {
+            try
+            {
+                var client = await _clienteApplicationService.RemoverCliente(clientId);
+                return Ok(client);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
     }
 }

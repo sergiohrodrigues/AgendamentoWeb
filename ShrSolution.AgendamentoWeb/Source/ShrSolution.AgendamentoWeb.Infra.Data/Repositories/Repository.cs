@@ -30,4 +30,22 @@ public class Repository<TKey, TEntity>
     {
         return DbSet;
     }
+
+    public void Atualizar(TEntity pEntidade)
+    {
+        DbSet.Update(pEntidade);
+        SaveChanges();
+    }
+
+    // public void Excluir(TEntity pEntidade)
+    // {
+    //     DbSet.Update(pEntidade);
+    //     SaveChanges();
+    // }
+
+    public void Remover(TKey pId)
+    {
+        DbSet.Remove(DbSet.Find(pId));
+        SaveChanges();
+    }
 }

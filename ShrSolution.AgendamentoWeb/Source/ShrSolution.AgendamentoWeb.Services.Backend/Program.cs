@@ -4,6 +4,7 @@ using ShrSolution.AgendamentoWeb.Application.Interfaces;
 using ShrSolution.AgendamentoWeb.Application.Mappings;
 using ShrSolution.AgendamentoWeb.Application.Services;
 using ShrSolution.AgendamentoWeb.Domain.Interfaces;
+using ShrSolution.AgendamentoWeb.Domain.Repositories;
 using ShrSolution.AgendamentoWeb.Domain.Services;
 using ShrSolution.AgendamentoWeb.Domain.Services.Interfaces;
 using ShrSolution.AgendamentoWeb.Infra.Data.Contexts;
@@ -34,6 +35,7 @@ builder.Services.AddScoped<IEmpresaService, EmpresaService>();
 builder.Services.AddScoped<IClienteService, ClienteService>();
 
 // Repository
+builder.Services.AddScoped(typeof(IRepository<,>), typeof(Repository<,>));
 builder.Services.AddScoped<IProfissionalRepository, ProfissionalRepository>();
 builder.Services.AddScoped<IEmpresaRepository, EmpresaRepository>();
 builder.Services.AddScoped<IClienteRepository, ClienteRepository>();

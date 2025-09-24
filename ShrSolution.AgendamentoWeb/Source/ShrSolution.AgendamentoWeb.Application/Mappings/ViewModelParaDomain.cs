@@ -14,5 +14,6 @@ public class ViewModelParaDomain : Profile
         CreateMap<AdicionarEmpresaViewModel, Empresa>();
         CreateMap<AdicionarProfissionalViewModel, Profissional>();
         CreateMap<AdicionarClienteViewModel, Cliente>();
+        CreateMap<EditarClienteViewModel, Cliente>();
     }
 }
