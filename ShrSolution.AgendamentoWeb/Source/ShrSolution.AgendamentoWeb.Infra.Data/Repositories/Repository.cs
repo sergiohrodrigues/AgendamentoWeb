@@ -4,8 +4,8 @@ using ShrSolution.AgendamentoWeb.Infra.Data.Contexts;
 
 namespace ShrSolution.AgendamentoWeb.Infra.Data.Repositories;
 
-public class Repository<TKey, TEntity> 
-    : RepositoryBase , IRepository<TKey, TEntity>
+public class Repository<TEntity, TKey> 
+    : RepositoryBase , IRepository<TEntity, TKey>
     where TEntity : class
 {
     protected readonly DbSet<TEntity> DbSet;

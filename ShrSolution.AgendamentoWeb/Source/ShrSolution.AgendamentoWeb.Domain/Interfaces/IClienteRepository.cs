@@ -3,6 +3,6 @@ using ShrSolution.AgendamentoWeb.Domain.Repositories;
 
 namespace ShrSolution.AgendamentoWeb.Domain.Interfaces;
 
-public interface IClienteRepository : IRepository<int, Cliente>
+public interface IClienteRepository : IRepository<Cliente, int>
 {
 }

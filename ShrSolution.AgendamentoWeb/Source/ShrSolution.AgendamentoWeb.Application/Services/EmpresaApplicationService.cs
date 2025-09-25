@@ -20,19 +20,30 @@ public class EmpresaApplicationService : IEmpresaApplicationService
 
     public async Task<EmpresaViewModel?> ObterEmpresaPorId(int pEmpresaId)
     {
-        var xEmpresa = await _empresaService.ObterPorId(pEmpresaId);
+        var xEmpresa = _empresaService.ObterPorId(pEmpresaId);
+        if (xEmpresa == null)
+            throw new Exception("Empresa não encontrada");
 
         var xRetorno = _mapper.Map<EmpresaViewModel>(xEmpresa);
 
         return xRetorno;
     }
 
-    public async Task<AdicionarEmpresaViewModel> Adicionar(AdicionarEmpresaViewModel pEmpresa)
+    public Task<AdicionarEmpresaViewModel> Adicionar(AdicionarEmpresaViewModel pEmpresa)
     {
+        if (pEmpresa.Nome == null)
+            throw new Exception("Nome não pode ser nulo");
+
+        if(pEmpresa.Telefone == null)
+            throw new Exception("Telefone não pode ser nulo");
+
+        if(pEmpresa.Endereco == null)
+            throw new Exception("Endereço não pode ser nulo");
+
         var xEmpresa = _mapper.Map<Empresa>(pEmpresa);
 
         _empresaService.Adicionar(xEmpresa);
 
-        return pEmpresa;
+        return Task.FromResult(pEmpresa);
     }
 }

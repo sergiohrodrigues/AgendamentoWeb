@@ -1,42 +1,15 @@
 ﻿using ShrSolution.AgendamentoWeb.Domain.Interfaces;
 using ShrSolution.AgendamentoWeb.Domain.Models;
+using ShrSolution.AgendamentoWeb.Domain.Repositories;
 using ShrSolution.AgendamentoWeb.Domain.Services.Interfaces;
 
 namespace ShrSolution.AgendamentoWeb.Domain.Services
 {
-    public class EmpresaService : IEmpresaService
+    public class EmpresaService : ServiceBase<Empresa, int>, IEmpresaService
     {
-        private readonly IEmpresaRepository _empresaRepository;
-
-        public EmpresaService(IEmpresaRepository context)
+        public EmpresaService(IRepository<Empresa, int> repository) : base(repository)
         {
-            _empresaRepository = context;
         }
-
-        public async Task<Empresa?> ObterPorId(int pEmpresaId)
-        {
-            var xRetorno = await _empresaRepository.ObterPorId(pEmpresaId);
-
-            if (xRetorno == null)
-                throw new Exception("Empresa não encontrada");
-
-            return xRetorno;
-        }
-
-        public void Adicionar(Empresa pEmpresa)
-        {
-            if (pEmpresa.Nome == null)
-                throw new Exception("Nome não pode ser nulo");
-
-            if(pEmpresa.Telefone == null)
-                throw new Exception("Telefone não pode ser nulo");
-
-            if(pEmpresa.Endereco == null)
-                throw new Exception("Endereço não pode ser nulo");
-
-            _empresaRepository.Adicionar(pEmpresa);
-        }
-
         // public async Task<ResponseModel<Empresa>> CreateEnterprise(EnterpriseCreateDto userCreateDto)
         // {
         //     ResponseModel<Empresa> respost = new ResponseModel<Empresa>();

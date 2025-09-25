@@ -3,7 +3,7 @@ using ShrSolution.AgendamentoWeb.Domain.Core;
 
 namespace ShrSolution.AgendamentoWeb.Domain.Models
 {
-    public class Profissional : Entity
+    public class Profissional : Entity<int>
     {
         public int Id { get; set; }
         public string Nome { get; set; }

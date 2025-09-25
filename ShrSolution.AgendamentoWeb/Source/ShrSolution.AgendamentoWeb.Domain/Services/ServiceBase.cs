@@ -8,7 +8,7 @@ public interface IServiceBase<TEntity, TKey>
     where TKey : struct
 {
     //bool ExistePorId(TKey? pKey);
-    TEntity? ObterPorId(TKey? pKey);
+    TEntity? ObterPorId(TKey pKey);
     IQueryable<TEntity> ObterTodos();
     void Adicionar(TEntity pEntidade);
     void Atualizar(TEntity pEntidade);
@@ -19,9 +19,9 @@ public class ServiceBase<TEntity, TKey> : IServiceBase<TEntity, TKey>
     where TEntity : Entity<TKey>
     where TKey : struct
 {
-    private IRepository<TKey, TEntity> _repository;
+    private IRepository<TEntity, TKey> _repository;
 
-    public ServiceBase(IRepository<TKey, TEntity> repository)
+    public ServiceBase(IRepository<TEntity, TKey> repository)
     {
         _repository = repository;
     }
@@ -39,7 +39,7 @@ public class ServiceBase<TEntity, TKey> : IServiceBase<TEntity, TKey>
     //     return xRetorno;
     // }
 
-    public TEntity? ObterPorId(TKey? pKey)
+    public TEntity? ObterPorId(TKey pKey)
     {
         var xRetorno = ObterTodos()
             .FirstOrDefault(p => p.Id.Equals(pKey));

@@ -1,27 +1,13 @@
-﻿using ShrSolution.AgendamentoWeb.Domain.Interfaces;
-using ShrSolution.AgendamentoWeb.Domain.Models;
+﻿using ShrSolution.AgendamentoWeb.Domain.Models;
+using ShrSolution.AgendamentoWeb.Domain.Repositories;
 using ShrSolution.AgendamentoWeb.Domain.Services.Interfaces;
 
 namespace ShrSolution.AgendamentoWeb.Domain.Services
 {
-    public class ProfissionalService : IProfissionalService
+    public class ProfissionalService : ServiceBase<Profissional, int>, IProfissionalService
     {
-        private readonly IProfissionalRepository _profissionalRepository;
-        public ProfissionalService(IProfissionalRepository pProfissionalRepository)
+        public ProfissionalService(IRepository<Profissional, int> repository) : base(repository)
         {
-            _profissionalRepository = pProfissionalRepository;
-        }
-
-        public async Task<Profissional?> ObterPorId(int pProfissionalId)
-        {
-            var xProfissional = await _profissionalRepository.ObterPorId(pProfissionalId);
-
-            return xProfissional;
-        }
-
-        public void Adicionar (Profissional pProfissional)
-        {
-            _profissionalRepository.Adicionar(pProfissional);
         }
         //
         // public async Task<ResponseModel<List<Profissional>>> GetAllProfessional(int enterpriseId)

@@ -16,13 +16,13 @@ namespace ShrSolution.AgendamentoWeb.Services.Backend.Controllers
             _empresaApplicationService = empresaApplicationService;
         }
 
-        [HttpGet]
-        public async Task<ActionResult<ResponseModel<EmpresaViewModel>>> ObterEmpresaPorId(int pEmpresaId)
+        [HttpGet("{empresaId}")]
+        public async Task<ActionResult<ResponseModel<EmpresaViewModel>>> ObterEmpresaPorId(int empresaId)
         {
             try
             {
-                var newEnterprise = await _empresaApplicationService.ObterEmpresaPorId(pEmpresaId);
-                return Ok(newEnterprise);
+                var xEmpresa = await _empresaApplicationService.ObterEmpresaPorId(empresaId);
+                return Ok(xEmpresa);
             }
             catch (Exception e)
             {

@@ -4,9 +4,9 @@ using ShrSolution.AgendamentoWeb.Infra.Data.Contexts;
 
 namespace ShrSolution.AgendamentoWeb.Infra.Data.Repositories;
 
-public class ClienteRepository : Repository<Cliente, int>, IClienteRepository
+public class ServicoRepository : Repository<Servico, int>, IServicoRepository
 {
-    public ClienteRepository(AgendamentoWebContext context) : base(context)
+    public ServicoRepository(AgendamentoWebContext context) : base(context)
     {
     }
 }

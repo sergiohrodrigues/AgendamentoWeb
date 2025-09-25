@@ -17,6 +17,20 @@ namespace ShrSolution.AgendamentoWeb.Services.Backend.Controllers
             _profissionalApplicationService = profissionalApplicationService;
         }
 
+        [HttpGet("{profissionalId}")]
+        public async Task<ActionResult<ResponseModel<ProfissionalViewModel>>> ObterProfissionalPorId(int profissionalId)
+        {
+            try
+            {
+                var xProfissinoal = await _profissionalApplicationService.ObterProfissionalPorId(profissionalId);
+                return Ok(xProfissinoal);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+        
         [HttpPost]
         public async Task<ActionResult<ResponseModel<AdicionarProfissionalViewModel>>> Adicionar(AdicionarProfissionalViewModel pAdicionarProfissionalViewModel)
         {

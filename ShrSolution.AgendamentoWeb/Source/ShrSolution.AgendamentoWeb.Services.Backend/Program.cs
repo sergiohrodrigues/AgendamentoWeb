@@ -28,17 +28,20 @@ builder.Services.AddCors(options =>
 builder.Services.AddScoped<IEmpresaApplicationService, EmpresaApplicationService>();
 builder.Services.AddScoped<IProfissionalApplicationService, ProfissionalApplicationService>();
 builder.Services.AddScoped<IClienteApplicationService, ClienteApplicationService>();
+builder.Services.AddScoped<IServicoApplicationService, ServicoApplicationService>();
 
 // Services
 builder.Services.AddScoped<IProfissionalService, ProfissionalService>();
 builder.Services.AddScoped<IEmpresaService, EmpresaService>();
 builder.Services.AddScoped<IClienteService, ClienteService>();
+builder.Services.AddScoped<IServicoService, ServicoService>();
 
 // Repository
 builder.Services.AddScoped(typeof(IRepository<,>), typeof(Repository<,>));
 builder.Services.AddScoped<IProfissionalRepository, ProfissionalRepository>();
 builder.Services.AddScoped<IEmpresaRepository, EmpresaRepository>();
 builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
+builder.Services.AddScoped<IServicoRepository, ServicoRepository>();
 
 var loggerFactory = LoggerFactory.Create(builder => builder.AddConsole());
 

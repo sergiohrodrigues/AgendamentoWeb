@@ -2,7 +2,7 @@
 
 namespace ShrSolution.AgendamentoWeb.Domain.Models
 {
-    public class Empresa : Entity
+    public class Empresa : Entity<int>
     {
         public int Id { get; set; }
         public string Nome { get; set; }

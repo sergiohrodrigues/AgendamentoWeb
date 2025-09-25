@@ -3,6 +3,6 @@ using ShrSolution.AgendamentoWeb.Domain.Repositories;
 
 namespace ShrSolution.AgendamentoWeb.Domain.Interfaces;
 
-public interface IEmpresaRepository : IRepository<Empresa, int>
+public interface IServicoRepository : IRepository<Servico, int>
 {
 }

@@ -19,12 +19,23 @@ public class ProfissionalApplicationService : IProfissionalApplicationService
         _mapper = mapper;
     }
 
+    public async Task<ProfissionalViewModel?> ObterProfissionalPorId(int pEmpresaId)
+    {
+        var xProfissional = _profissionalService.ObterPorId(pEmpresaId);
+        if (xProfissional == null)
+            throw new Exception("Profissional não encontrado.");
+
+        var xRetorno = _mapper.Map<ProfissionalViewModel>(xProfissional);
+
+        return xRetorno;
+    }
+
     public async Task<AdicionarProfissionalViewModel?> Adicionar(AdicionarProfissionalViewModel pAdicionarProfissionalViewModel)
     {
         if (pAdicionarProfissionalViewModel.EmpresaId == null)
             throw new Exception("Empresa é obrigatório");
 
-        var xEmpresa = await _empresaService.ObterPorId(pAdicionarProfissionalViewModel.EmpresaId!.Value);
+        var xEmpresa = _empresaService.ObterPorId(pAdicionarProfissionalViewModel.EmpresaId!.Value);
 
         if (xEmpresa == null)
             throw new Exception("Empresa não encontrada");

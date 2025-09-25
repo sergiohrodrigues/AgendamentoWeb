@@ -7,7 +7,7 @@ namespace ShrSolution.AgendamentoWeb.Domain.Services;
 
 public class ClienteService : ServiceBase<Cliente, int>, IClienteService
 {
-    public ClienteService(IRepository<int, Cliente> repository) : base(repository)
+    public ClienteService(IRepository<Cliente, int> repository) : base(repository)
     {
     }
     // public async Task<Cliente?> ObterPorId(int pClienteId)

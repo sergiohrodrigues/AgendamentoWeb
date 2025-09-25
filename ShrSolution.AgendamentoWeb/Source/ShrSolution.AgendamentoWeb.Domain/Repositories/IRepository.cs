@@ -1,6 +1,6 @@
 namespace ShrSolution.AgendamentoWeb.Domain.Repositories;
 
-public interface IRepository<TKey, TEntity>
+public interface IRepository<TEntity, TKey>
 {
     TEntity? ObterPorId(TKey id);
     void Adicionar(TEntity pEntity);
