@@ -4,20 +4,9 @@ using ShrSolution.AgendamentoWeb.Infra.Data.Contexts;
 
 namespace ShrSolution.AgendamentoWeb.Infra.Data.Repositories;
 
-public class AgendamentoRepository : IAgendamentoRepository
+public class AgendamentoRepository : Repository<Agendamento, int>, IAgendamentoRepository
 {
-    private readonly AgendamentoWebContext _context;
-
-    public AgendamentoRepository(AgendamentoWebContext context)
+    public AgendamentoRepository(AgendamentoWebContext context) : base(context)
     {
-        _context = context;
-    }
-
-    public async Task<Agendamento> AdicionarAgendamento(Agendamento agendamento)
-    {
-        await _context.Agendamento.AddAsync(agendamento);
-        await _context.SaveChangesAsync();
-
-        return agendamento;
     }
 }

@@ -1,4 +1,5 @@
 using AutoMapper;
+using ShrSolution.AgendamentoWeb.Application.ViewModels.Agendamento;
 using ShrSolution.AgendamentoWeb.Application.ViewModels.Cliente;
 using ShrSolution.AgendamentoWeb.Application.ViewModels.Empresa;
 using ShrSolution.AgendamentoWeb.Application.ViewModels.Profissional;
@@ -16,5 +17,6 @@ public class ViewModelParaDomain : Profile
         CreateMap<AdicionarClienteViewModel, Cliente>();
         CreateMap<EditarClienteViewModel, Cliente>();
         CreateMap<AdicionarServicoViewModel, Servico>();
+        CreateMap<AdicionarAgendamentoViewModel, Agendamento>();
     }
 }

@@ -56,7 +56,7 @@ public class ServiceBase<TEntity, TKey> : IServiceBase<TEntity, TKey>
         return xRetorno;
     }
 
-    public void Adicionar(TEntity pEntidade)
+    public virtual void Adicionar(TEntity pEntidade)
     {
         _repository.Adicionar(pEntidade);
     }
